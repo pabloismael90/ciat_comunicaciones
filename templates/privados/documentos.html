@@ -1,0 +1,71 @@
+{% extends "baseadmin.html" %}
+
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        DOCUMENTOS
+                    </div>
+                </div>
+                <div class="span7">
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<ul class="nav nav-list well">
+					  <li class="nav-header">
+					    BUSCAR
+					  </li>
+					  <li>
+						<form class="form-search form-inline" action="." method="GET">
+							<div class="input-prepend">
+						 		 <button type="submit" class="btn"><i class="icon-search button-icon"></i></button>
+
+						 	 <input type="text" class=" search-query" style="width:100px; height:18px;" name="q" value="{% if query %} {{query}} {% endif%}" />
+							</div>
+						</form>
+
+
+					  </li>
+					  <li class="nav-header">
+					    TAGS
+					  </li>
+				{% for tag in tags %}
+					<li><a href="/foros/privado/documento_tag/{{tag}}"><i class="icon-tag"></i>{{tag}}</a></li>
+				{% endfor %}
+				</ul>
+			</div>
+			<div class="span9">
+				<table class="table  table-bordered table-condensed table-striped">
+					<thead>
+						<tr>
+							<th width="610">Nombre del documento</th>
+							<th>Descargar</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for a in documentos %}
+							{% if a.nombre_doc != '' %}
+								<tr>
+									<td>{{a.nombre_doc}}</td>
+									<td><center><a href="/uploads/{{a.adjunto}}" class="btn btn-mini btn-info"><i class="icon-download-alt button-icon icon-white"></i></a></center></td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

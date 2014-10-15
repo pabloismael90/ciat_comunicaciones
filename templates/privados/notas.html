@@ -1,0 +1,79 @@
+{% extends "baseadmin.html" %}
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+			$(".alert").alert()
+        });
+    </script>
+{% endblock %}
+{% block contenido %}
+<div class="row">
+	<div class="encabezado">
+	  <div class="container">
+		    <div class="row">
+			    <div class="span5">
+			    	<div class="encabezado-title">
+			    		MIS NOTAS
+			  		</div>
+			    </div>
+			    <div class="span7">
+					<div class="btn-group filtrospais">
+						<a href="/notas/crear" class="btn"><i class="icon-plus-sign"></i>Crear nueva nota</a>
+					</div>
+			    </div>
+	        </div>
+	  </div>
+	</div>
+</div>
+<div class="row body-content" >
+	<div class="container">
+		{% if request.GET.shva == 'erase' %}
+            <div class="alert fade in">
+                Se ha eliminado la nota de forma permanente
+                <a class="close" href="#" data-dismiss="alert">x</a>
+            </div>
+        {% endif %}
+		{% for nota in notas %}
+			<div class="row">
+				<div class="span3">
+				{%if nota.fotos.all.count > 0%}
+				 {%for thumb in nota.fotos.all|slice:"1"%} 
+	                   <a href="/notas/{{nota.id}}"><img  src="{{thumb.foto.url_220x160}}"><a/>
+	             {%endfor%}
+	            {%else%}
+	           		   <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png"><a/>
+	            {%endif%}
+				</div>
+				<div class="span9">
+						<div class="extrainfo">{{nota.fecha}} | {{nota.user.userprofile.contraparte.nombre}}</div>
+						<a href="/notas/ver/{{nota.id}}" class="titulo-medio">{{nota.titulo}}</a><br>
+						{{nota.contenido|safe|truncatewords_html:50}} 
+						<a href="/notas/{{nota.id}}" class="boton-blue-leer">Leer más</a>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	    <div class="pagination">
+	    	<ul>
+	        {% if notas.has_previous %}
+	        <li>
+	          <a href="{% url notas-personales %}?page={{ notas.previous_page_number }}">
+	            ← Anterior</a>
+	        </li>
+	        {% endif %}
+	        <li class="active">
+	            {% for numero in notas.paginator.page_range%}
+	            	<a href="{% url notas-personales %}?page={{numero}}">{{numero}}</a>
+	            {%endfor%}
+	        </li>
+	        {% if notas.has_next %}
+	         <li>
+	         <a href="{% url notas-personales %}?page={{ notas.next_page_number }}">
+	                Siguiente →</a>
+	         </li>
+	         {% endif %}
+	    	</ul>
+	    </div>
+	</div>
+</div>
+{% endblock %}

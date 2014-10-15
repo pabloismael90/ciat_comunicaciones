@@ -1,0 +1,64 @@
+{% extends "baseinterna.html" %}
+{% block extra_js %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+         // para resaltar menu
+        $('#asociados-menu').addClass('active');
+    });
+</script>
+{%endblock%}
+{%block titulo%}Asociados en Nicaragua{%endblock%}
+{%block descriptitulo%}Somos un grupos de radios comunitarias, que junto a organizaciones aliadas promueven el desarrollo social, los derechos humanos, la diversidad cultural, la pluralidad de informaciones y opiniones, a fin de  fortalecimiento de los vínculos que hacen a la esencia de la identidad cultural y social.{%endblock%}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        ASOCIADOS
+                    </div>
+                </div>
+                <div class="span7">
+
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+            {% for contraparte in object_list %}
+                    <div class='asociado-link'>
+                        <span class="frecuencia" style="right:0;position: relative;">{{contraparte.frecuecia}}</span>
+                        <center><a href="{{contraparte.get_absolute_url}}" >
+                            {% if contraparte.logo %}
+                            <img src="{{contraparte.logo.url_180x160}}" ></a>
+                            {%else%}
+                            <br><br>
+                            {%endif%}
+                            <br><br> 
+                        <a href="{{contraparte.get_absolute_url}}" class="titulo-medio">{{contraparte.nombre}}</a>
+                        </center> 
+                    </div>
+            {% endfor %}
+            </div>
+            <div class='span3 sidebar-radios'>
+                <center>
+                <div class="btn-group">
+                  <a href="/contrapartes/mapa" class="btn btn-large">Mapa</a>
+                  <a href="/contrapartes/" class="btn btn-large active">Lista</a>
+                </div>
+                </center>
+                <br>
+                <center>
+                <img src="/files/img/amarc_sidebar.png"><br><br>
+                </center>
+                <p>Lista que demuestra la distribucion de las radios comunitarias pertenecientes a AMARC Nicaragua en la actualidad</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

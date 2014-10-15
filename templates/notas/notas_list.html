@@ -1,0 +1,78 @@
+{% extends "baseinterna.html" %}
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+			  // para resaltar menu
+  			  $('#noticias-menu').addClass('active');
+        });
+    </script>
+{% endblock %}
+{%block titulo%}Noticias{%endblock%}
+{%block descriptitulo%}Últimas noticias destacadas de las asociadas y organizaciones aliadas de AMARC-Nicaragua{%endblock%}
+{% block contenido %}
+<style type="text/css">
+	.wraap{margin:0 auto 0 auto; width:390px;}
+</style>
+<div class="row">
+	<div class="encabezado">
+	  <div class="container">
+		    <div class="row">
+			    <div class="span5">
+			    	<div class="encabezado-title">
+			      		NOTAS {%if pais_selecto%}: <b>{{pais_selecto.nombre}}</b>{%endif%}
+			  		</div>
+			    </div>
+	        </div>
+	  </div>
+	</div>
+</div>
+<div class="row body-content">
+	<div class="container">
+		{% if request.GET.shva == 'erase' %}
+            <div class="alert fade in">
+                Se ha eliminado la nota de forma permanente
+                <a class="close" href="#" data-dismiss="alert">x</a>
+            </div>
+        {% endif %}
+		{% for nota in notas %}
+			<div class="row">
+				<div class="span3">
+				{%if nota.fotos.all.count > 0%}
+				 {%for thumb in nota.fotos.all|slice:"1"%} 
+	                   <a href="/notas/{{nota.id}}"><img  src="{{thumb.foto.url_220x160}}"><a/>
+	             {%endfor%}
+	            {%else%}
+	           		   <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png"><a/>
+	            {%endif%}
+				</div>
+				<div class="span9">
+						<div class="extrainfo">{{nota.fecha}}  |  {{nota.user.userprofile.contraparte.nombre}}</div>
+						<a href="{{nota.get_absolute_url}}" class="titulo-medio">{{nota.titulo}}</a><br>
+						{{nota.contenido|safe|truncatewords_html:50|striptags}} 
+						<a href="/notas/{{nota.id}}" class="boton-blue-leer">Leer más</a>
+				</div>
+			</div>
+			<hr>
+		{% endfor %}
+	    <div class="pagination wraap">
+	    	<ul>
+	        {% if notas.has_previous %}
+	        <li>
+	          <a href="{% url notas_list %}?page={{ notas.previous_page_number }}">
+	            ← Anterior</a>
+	        
+	        {% endif %}
+
+	        	<span class="active">
+            		Pagina {{ notas.number }} de {{ notas.paginator.num_pages }}.
+        		</span>
+
+	        {% if notas.has_next %}
+	         <a href="{% url notas_list %}?page={{ notas.next_page_number }}">
+	         Siguiente →</a> </li>
+	         {% endif %}
+	    	</ul>
+	    </div>
+	</div>
+</div>
+{% endblock %}

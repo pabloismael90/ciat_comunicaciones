@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+static_media/uploads/
+*.sublime-project
+*.sublime-workspace
+*.db
+*.sqlite3
+CACHE

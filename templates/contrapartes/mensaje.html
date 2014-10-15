@@ -1,0 +1,111 @@
+{% extends "baseadmin.html" %}
+{% block contenido %}
+  {%block extra_js%}
+{%if request.GET.guardado == 'ok'%}
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#myModal').modal('show');
+});
+</script>
+  {%endif%}
+  {%endblock%}
+<div class="row" >
+    <div class="encabezado">
+      <div class="container">
+        <div class="row">
+          <div class="span5">
+            <div class="encabezado-title">
+            MENSAJES
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{%if request.GET.guardado == 'ok'%}
+                        <div class="modal fade hide" id="myModal">
+                          <div class="modal-header">
+                            <a class="close" data-dismiss="modal">×</a>
+                            <h3>Enviado con éxito</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>Su mensaje ha sido enviado con éxito a todos los destinatarios</p>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+                          </div>
+                        </div>  
+    {%endif%}
+<div class="row body-content">
+	<div class="container">
+		<div class="row">
+			<div class="span6">
+				<div class="alert alert-success">Crear mensaje</div>
+				<div class="well mensajeform">
+					<center><a class='btn btn-info' href="javascript:seleccionar_todo()"><i class="icon-ok icon-white"></i>Seleccionar todos</a></center>
+					<form name='fl' action="." method="post" accept-charset="utf-8">{% csrf_token %}
+						{{form.media}}
+						{{form.user}}<br>
+						<div class="clean"></div><br>
+						{{form.mensaje}}<Br>
+						<input type="submit" class="btn btn-info" name="enviar" value="Enviar">
+					</form>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="alert">Mensajes recibidos</div>
+				<table class="table table-bordered table-condensed table-striped">
+					<tbody>
+						{% for a in mensajes %}
+						<tr>
+							<td>
+								<div style="float:right;margin:10px 10px;"class="opacidad-70">
+								<span class="badge badge-info">Enviado por {{a.usuario}}</span>
+								<span class="badge">{{a.fecha}}</span>
+								</div>
+								<div class="clean"></div>
+								{{a.mensaje|safe}}
+									
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<div class="pagination">
+					<ul>
+				        {% if mensajes.has_previous %}
+				        <li>
+				          <a href="{% url enviar-mensaje %}?page={{ mensajes.previous_page_number }}">
+				            ← Anterior</a>
+				        </li>
+				        {% endif %}
+
+				        <li class="active">
+				            {% for numero in mensajes.paginator.page_range%}
+				            	<a href="{% url enviar-mensaje %}?page={{numero}}">{{numero}}</a>
+				            {%endfor%}
+				        </li>
+
+				        {% if mensajes.has_next %}
+				         <li>
+				         <a href="{% url enviar-mensaje %}?page={{ mensajes.next_page_number }}">
+				                Siguiente →</a>
+				         </li>
+				         {% endif %}
+			    	</ul>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	function seleccionar_todo(){ 
+   		for (i=0;i<document.fl.elements.length;i++) 
+      		if(document.fl.elements[i].type == "checkbox")	
+         		document.fl.elements[i].checked=1;
+		} 
+</script>
+</div>
+
+{% endblock %}

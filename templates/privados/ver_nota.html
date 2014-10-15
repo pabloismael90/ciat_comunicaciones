@@ -1,0 +1,227 @@
+{% extends "baseadmin.html" %}
+  {% load magicembed_tags %}
+{% block extra_js%}
+<script type="text/javascript" src="/files/js/jquery.bxSlider.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  // assign the slider to a variable
+  var slider = $('#slider1').bxSlider({
+    controls: false
+  });
+
+  // assign a click event to the external thumbnails
+  $('.thumbs a').click(function(){
+   var thumbIndex = $('.thumbs a').index(this);
+    // call the "goToSlide" public function
+    slider.goToSlide(thumbIndex);
+  
+    // remove all active classes
+    $('.thumbs a').removeClass('pager-active');
+    // assisgn "pager-active" to clicked thumb
+    $(this).addClass('pager-active');
+    // very important! you must kill the links default behavior
+    return false;
+  });
+
+  // assign "pager-active" class to the first thumb
+  $('.thumbs a:first').addClass('pager-active');
+$('#myModal').modal('hide');
+$(".alert").alert();
+
+  $(".fancybox").fancybox({
+      openEffect  : 'elastic',
+      closeEffect : 'elastic',
+
+      helpers : {
+        title : {
+          type : 'inside'
+        }
+      }
+  });
+  $('.username').tooltip({'placement':'bottom'});
+});
+</script>
+{%endblock%}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        NOTAS
+                    </div>
+                </div>
+                <div class="span7">
+                    <div class="btn-group acciones">
+                        {% if nota.user == request.user or request.user.is_superuser %}
+                            <a class="btn" href="/notas/editar/{{nota.id}}"><i class="icon-pencil"></i>Editar</a>
+                            <a class="btn" data-toggle="modal" data-target="#myModal"  ><i class="icon-remove-sign"></i>Borrar</a>
+                        {% endif %}
+                       </div> 
+                        <div class="modal fade hide" id="myModal">
+                          <div class="modal-header">
+                            <a class="close" data-dismiss="modal">×</a>
+                            <h3>¿Está seguro?</h3>
+                          </div>
+                          <div class="modal-body">
+                            <p>La nota será borrada permanentemente y no podrá ser recuperada</p>
+                          </div>
+                          <div class="modal-footer">
+                            <a href="#" data-dismiss="modal" class="btn">No Borrar</a>
+                            <a href="/notas/borrar/{{nota.id}}" class="btn btn-danger">Borrar Permanentemente</a>
+                          </div>
+                        </div>  
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span7">
+                {% if request.GET.shva == 'ok' %}
+                  <div class="alert fade in">
+                      La nota ha sido editada con &eacute;xito!
+                      <a class="close" href="#" data-dismiss="alert">x</a>
+                  </div>
+                {% endif %}
+               <h1 class="titulo-grande">{{nota.titulo}}</h1>
+               <div class="extrainfofull">{{nota.fecha}}  |  {{nota.user.userprofile.pais.nombre}}</div>
+            </div>
+            <div class="span5">
+                
+                <a class="contraparte-nota btn " href="/contrapartes/{{nota.user.userprofile.contraparte.id}}"><img src="{{nota.user.userprofile.contraparte.logo.url_70x60}}">{{nota.user.userprofile.contraparte.nombre}}</a>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="span7 divisordoble">
+                {{nota.contenido|safe}}
+            </div>
+            <div class="span5 divisordoble">
+                <div id="slider1">
+                    {% for imagen in nota.fotos.all%}
+                    <div>
+                      <a class="fancybox" rel="galleryforo" title="{{imagen.nombre_img}}" href="{{imagen.foto.url_640x480}}">
+                        <img class="imagen-slider" src="{{imagen.foto.url_380x250}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}">
+                      </a>
+                        <span class="label label-success">{{imagen.nombre_img}}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {%if nota.fotos.all.count > 1%}
+                <div class="thumbs">
+                  {% for imagen in nota.fotos.all%}
+                        <a href="#"><img width="65" height="65" src="{{imagen.foto.url_80x80}}" alt="{{imagen.nombre_img}}" title="{{imagen.nombre_img}}"></a>
+                    {% endfor %}
+                    <div class="clean"></div>
+                </div>
+                {%endif%}
+                {%if nota.adjuntos.count >= 1%}
+                    <div class="sidebar-title">Documentos</div>
+                    <div class="dividerline"></div>
+                    <table class="table  table-bordered table-condensed doc-sidebar">
+                      <tbody>
+                        {% for adjuntos in nota.adjuntos.all%}
+                        <tr>
+                            <td>{{adjuntos.nombre_doc}}</td>
+                            <td><center><a href="{{adjuntos.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                {%endif%}
+                {%if nota.video.all%}
+                <div class="sidebar-title">Video</div>
+                        <table class="table table-bordered table-condensed doc-sidebar">
+                          <tbody>
+                            {% for video in nota.video.all%}
+                            <tr>
+                                <td><a data-toggle="modal" data-target="#myModal{{video.id}}" href="#"><img  src="{{video.url|magicthumbnail}}" width="370" height="150">
+                                  <img src="/files/img/player.png" class="player-icon"></a>
+                                </td>
+                            </tr>
+                                <div class="modal fade hide modal-video" id="myModal{{video.id}}">
+                                  <div class="modal-header">
+                                    <a class="close" data-dismiss="modal">×</a>
+                                    <h3>{{video.nombre_video}}</h3>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>{{ video.url|magicembed:"640x480" }}</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+                                  </div>
+                                </div>  
+                            {% endfor %}
+                          </tbody>
+                        </table>
+              {%endif%}
+              {%if nota.audio.all%}
+                <div class="sidebar-title">Audio</div>
+                        <table class="table  table-bordered table-condensed doc-sidebar">
+                          <tbody>
+                            {% for audio in nota.audio.all%}
+                            <tr>
+                              <td>{{audio.nombre_audio}}</br>
+                      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="280" height="20"
+                          codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+                          <param name="movie" value="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true" />
+                          <param name="wmode" value="transparent" />
+                          <embed wmode="transparent" width="280" height="20" src="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true"
+                          type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                      </object>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+              {%endif%}
+            </div>
+        </div>
+        {%if request.user.is_authenticated%}
+        <div class="row">
+          <div class="span12">
+            <div class="dividerline"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <div class="encabezado-title raya">COMENTARIOS</div>
+            {% for comentario in nota.comentarionotas_set.all %}         
+            <div class="well" id="cmt{{comentario.id}}">{{comentario.comentario|safe}}
+              <div class="user-info">
+                <i>escrito por</i>
+                {%if comentario.user.userprofile.avatar %}
+                <img src="{{comentario.user.userprofile.avatar.url_70x60}}" width="25" height="25">
+                {%else%}
+                <img src="/files/img/avatarpeque.png" width="25" height="25">
+                {%endif%}
+
+                 <b><a class="username" href="#" rel="tooltip" title="{{comentario.user.first_name}} - {{comentario.user.userprofile.contraparte}}">{{comentario.user.username}}</a></b> - {{comentario.fecha|date:"d M"}}
+                {% if comentario.user == request.user or request.user.is_superuser %}
+                    <div class="btn-group foro-edit" style="float:right;">
+                  <a data-fancybox-type="iframe"  class=" fancybox btn btn-mini" href="/foros/comentario/editar/{{comentario.id}}"><i class="icon-pencil"></i></a>
+                  <a class="btn btn-mini" href="/foros/comentario/borrar/{{comentario.id}}"><i class="icon-trash"></i></a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>  
+            {%endfor%}
+            <div class="well"> 
+            <form action="." method="post">{% csrf_token %}
+                    {{form.media}}
+                    {{form.as_p}}
+
+                    <input class="btn btn-large btn-info " style="" type="submit" id="submitfoo" value="Guardar" />
+                  
+            </form>  
+          </div>
+          </div>
+        </div>
+        {%endif%}
+    </div>
+</div>
+       
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends "baseadmin.html" %}
+{% block extra_js %}
+<link href="/files/css/fullcalendar.css" rel="stylesheet" type="text/css">
+<link href="/files/css/cupertino/theme.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/files/js/fullcalendar.min.js"></script>
+<script type='text/javascript'>
+	$(document).ready(function() {
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		m = m-1;
+
+		$('#calendar').fullCalendar({
+			minTime: '8:00',
+			maxTime: '6:00pm',
+			defaultView: 'month',
+			dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+			monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            contentHeight: 350,
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: ''
+			},
+            buttonText: {   
+                today: 'Hoy',
+                month: 'Mes',
+                day: 'Día',
+                week: 'Semana'
+            },
+			eventClick: function(calEvent, jsEvent, view) {
+                window.location = '/agendas/calendar/' + calEvent.id;
+                },
+			editable: false,
+			events: "/agendas/calendar/"
+
+		});	
+	});
+</script>
+{%endblock%}
+{% block contenido %}
+<div class="row">
+	<div class="encabezado">
+	  <div class="container">
+		    <div class="row">
+			    <div class="span5">
+			    	<div class="encabezado-title">
+			      		AGENDA DE ACTIVIDADES
+			  		</div>
+			    </div>
+			    <div class="span7">
+					<div class="btn-group filtrospais">
+					  <a class="btn"href="/agendas/crear"><i class="icon-plus"></i>Agregar Actividad</a>
+					</div>
+			    </div>
+	        </div>
+	  </div>
+	</div>
+</div>
+<div class="row body-content">
+	<div class="container ">
+ 		{% if request.GET.shva == 'erase' %}
+            <div class="alert fade in">
+                Se ha eliminado el evento de forma permanente
+                <a class="close" href="#" data-dismiss="alert">x</a>
+            </div>
+        {% endif %}
+		{% if request.GET.shva == 'editada' %}
+            <div class="alert fade in">
+                El evento ha sido editado
+                <a class="close" href="#" data-dismiss="alert">x</a>
+            </div>
+        {% endif %}
+		{%if actividad %}
+		<div class="row">
+			<div  {%if actividad.adjunto.all %}class="span8"{%else%} class="span12"{%endif%}>
+				<div class="evento">
+					<div class="fechas">
+						<span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.inicio|date:"d M"}}</span>
+						{%if actividad.final%}
+							→ <span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.final|date:"d M"}}</span>
+						{%endif%}
+					</div>
+					<div class="titulo-medio">{{actividad.evento}}</div>
+					{{actividad.descripcion|safe}}
+					{% if actividad.user == request.user or request.user.is_superuser %}
+						<div class="botones-evento">
+					    <a class="btn btn-mini" href="/agendas/editar/{{actividad.id}}"><i class="icon-pencil"></i>Editar</a>
+					    <a  data-toggle="modal" data-target="#myModal" class="btn btn-mini btn-danger" href=""><i class="icon-trash icon-white"></i>Borrar</a>
+						</div>
+						<div class="clean"></div>
+	                        <div class="modal fade hide" id="myModal">
+	                          <div class="modal-header">
+	                            <a class="close" data-dismiss="modal">×</a>
+	                            <h3>¿Está seguro?</h3>
+	                          </div>
+	                          <div class="modal-body">
+	                            <p>El evento será borrado permanentemente y no podrá ser recuperado</p>
+	                          </div>
+	                          <div class="modal-footer">
+	                            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+	                            <a href="/agendas/borrar/{{actividad.id}}" class="btn btn-danger">Borrar permanentemente</a>
+	                          </div>
+	                        </div>  
+					 {% endif %}
+				</div>
+			</div>
+			{%if actividad.adjunto.all %}
+			<div class="span4">				
+				<div class="sidebar-title">Documentos</div>
+                <table class="table  table-bordered table-condensed doc-sidebar">
+                  <tbody>
+                    {% for doc in actividad.adjunto.all%}
+                    <tr>
+                        <td>{{doc.nombre_doc}}</td>
+                        <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+			</div>
+			{%endif%}
+		</div>
+		<hr>
+		{%endif%}
+		<div class="row">
+			<div class="span9">
+				<div id='calendar'></div>
+			</div>
+			<div class="span3">
+				<ul class="nav nav-list well">
+						<li class="nav-header">
+					    OPCIONES DE VISUALIZACIÓN
+					  </li>
+					  	<form  action="/agendas/calendar/" method="POST">{% csrf_token %}
+						 {% for pais in paises %}
+						 	<strong>{{pais}}</strong><br>
+
+						 	{% for contraparte in contrapartes_sel %}
+						 		{% if contraparte.pais.id == pais.id%}
+						 		<div class="leyenda"style ="background:{{contraparte.font_color}}"></div>
+								<label class="checkbox">
+								<input type="checkbox" name="contraparte" value="{{contraparte.id}}" checked>
+								{{contraparte}}	
+								</label>
+						 		{%endif%}
+						 	{% endfor %}
+
+						 	{% for contraparte in contrapartes_otras %}
+						 		{% if contraparte.pais.id == pais.id%}
+						 		<div class="leyenda"style ="background:{{contraparte.font_color}}"></div>
+								<label class="checkbox">
+								<input type="checkbox" name="contraparte" value="{{contraparte.id}}">
+								{{contraparte.siglas}}
+								</label>
+						 		{%endif%}
+						 	{% endfor %}
+
+						 {% endfor %}
+						 <hr>
+						<li>
+						<button type="submit" class="btn">Mostrar</button>
+						</li>
+						</form>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
