@@ -17,12 +17,22 @@ import operator
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib.sites.models import Site
+from django.views.generic import TemplateView
 
 # Create your views here.
 
 def logout_page(request):
   logout(request)
   return HttpResponseRedirect('/')
+
+class HomeView(TemplateView):
+    template="basexterna.html"
+
+    def get_context_data(self, request, *args, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['book_list'] = "hola!"
+        return context
+
 
 def lista_notas(request):
     notas_list = Notas.objects.all().order_by('-fecha','-id')
