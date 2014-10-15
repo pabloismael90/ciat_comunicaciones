@@ -26,7 +26,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 /* == font and links == */
 body { font-family: 'Open Sans', 'Myriad Pro', 'Helvetica',  sans-serif; font-size: 16px; font-weight: 300; line-height: 26px; color: #777; }
-a { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out all; -o-transition: 0.2s ease-in-out all; transition: 0.2s ease-in-out all; }
+/*a { -webkit-transition: 0.2s ease-in-out all; -moz-transition: 0.2s ease-in-out all; -o-transition: 0.2s ease-in-out all; transition: 0.2s ease-in-out all; }*/
 a:link, a:visited { color: #5d8c3b; text-decoration: none; }
 a:hover, a:focus { color: #111; outline: none; }
 a.moretag { font-size: 12px; text-transform: uppercase; }

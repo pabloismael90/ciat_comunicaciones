@@ -15,6 +15,7 @@
     <link href="js/audioplayer/audioplayer.css" rel="stylesheet" type="text/css"><!-- Audioplayer -->
     <link href="style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
     <link rel="stylesheet" href="src/css/mediaelementplayer.css" />
+    <link href="js/bxslider/jquery.bxslider.css" rel="stylesheet" /><!-- bxSlider CSS file -->
     
 
   </head>
@@ -392,7 +393,19 @@
     
     </div><!-- content wrapper end -->
 
-    
+    <div class="sliderorg">
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar1"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar4"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar5"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar6"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar7"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar8"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar9"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar10"></div>
+    </div>
+
     <div id="k-footer"><!-- footer -->
     
     	<div class="container"><!-- container -->
@@ -560,6 +573,24 @@
     <script>
 $('audio,video').mediaelementplayer();
 </script>
+    <!-- bxSlider Javascript file -->
+    <script src="js/bxslider/jquery.bxslider.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $('.sliderorg').bxSlider({
+            slideWidth: 300,
+            minSlides: 2,
+            maxSlides: 4,
+            moveSlides: 1,
+            slideMargin: 10,
+            auto: true,
+            autoHover:true,
+            preventDefaultSwipeX:false,
+            pager:false
+           
+          });
+        });
+    </script>
    
   </body>
 </html>
