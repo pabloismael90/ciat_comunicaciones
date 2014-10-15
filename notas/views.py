@@ -26,9 +26,9 @@ def logout_page(request):
   return HttpResponseRedirect('/')
 
 class HomeView(TemplateView):
-    template="basexterna.html"
+    template_name = "basexterno.html"
 
-    def get_context_data(self, request, *args, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['book_list'] = "hola!"
         return context

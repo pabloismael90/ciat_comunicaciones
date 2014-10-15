@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic import ListView, DetailView
 from models import Notas
+from .views import HomeView
 
 urlpatterns = patterns('notas.views',
     #url(r'^$', ListView.as_view(model=Notas, paginate_by=2, 
@@ -16,4 +17,5 @@ urlpatterns = patterns('notas.views',
     url(r'^crear/$', 'crear_nota', name="crear-nota"),
     url(r'^editar/(?P<id>\d+)/$', 'editar_nota', name='editar-nota'),
     url(r'^borrar/(?P<id>\d+)/$', 'borrar_nota', name='borrar-nota'),
+    url(r'^nuevobase/$', HomeView.as_view()),
     )
