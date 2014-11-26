@@ -310,7 +310,7 @@ li.widget-container:not(:first-child) { margin-top: 10px; }
 .up-event-wrapper { margin-top: 40px; }
 .up-event-wrapper:last-child p { margin-bottom: 0; }
 .event-meta { margin-top: 40px; }
-.event-from, .event-to { display: block; float: left; font-size: 14px; font-weight: 700; line-height: 1; color: #FFF; background-color: #16a990; padding: 10px; margin-right: 1px; text-transform: uppercase; }
+.event-from, .event-to { display: block; float: left; font-size: 14px; font-weight: 700; line-height: 1; color: #FFF; background-color: #5d8c3b; padding: 10px; margin-right: 1px; text-transform: uppercase; }
 .event-divider, .event-time { display: block; float: left; font-size: 14px; line-height: 1; background-color: #F1F1F1; padding: 10px; margin-right: 1px; text-transform: uppercase; }
 /* == END upcoming events ( widget, page and single ) == */
 
@@ -722,3 +722,11 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 	#k-menu { display: none; }
 }
 /* == END media queries == */
+
+.colorong{
+	background-color: #5d8c3b;
+	color: #5d8c3b;
+}
+.ong-list{
+	margin-top: 10px;
+}
