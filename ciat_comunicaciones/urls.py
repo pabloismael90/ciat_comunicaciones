@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
     url(r'^foros/', include('foros.urls')),
     url(r'^busqueda/$', include('django_google_cse.urls')),
+    url(r'^pages/', include('django.contrib.flatpages.urls')),
 )
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
