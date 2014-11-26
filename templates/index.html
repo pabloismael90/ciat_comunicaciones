@@ -1,0 +1,161 @@
+{% extends "base.html"%}
+{% block extra_js%}
+<script type="text/javascript" src="/files/js/jquery.bxSlider.min.js"></script>
+<script type="text/javascript" src="/files/js/FeedEk.js"></script>
+<link href="/files/css/FeedEk.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+  $(document).ready(function(){
+    var slider = $('#slider1').bxSlider({
+      controls: true,
+      auto:true,
+      pause:8000,
+      speed:1500,
+      prevImage:'/files/img/prev.png',
+      nextImage:'/files/img/next.png',
+    });
+
+    // para resaltar menu
+    $('#inicio-menu').addClass('active');
+
+    // altura de linea de eventos basado en tamaño de div
+    altura_evento = $(".new-evento-index").height();
+    if (altura_evento < 300) {
+      $(".index-mapa").css("margin-bottom","20px");
+      $(".new-evento-index").height(altura_evento+20);
+    }
+    if (altura_evento < 230) {
+      $(".index-mapa").css("margin-bottom","20px");
+      $(".new-evento-index").height(altura_evento+40);
+    }
+    $('#divRss').FeedEk({
+        FeedUrl: 'http://www2.amarc.org/?q=es/rss.xml',
+        MaxCount: 2,
+        ShowDesc: true,
+        ShowPubDate: true,
+        DescCharacterLimit: 140
+    });
+});
+
+
+</script>
+<script>
+  $(function() { 
+    // Setup the player to autoplay the next track
+    var a = audiojs.createAll({
+      trackEnded: function() {
+        var next = $('ol li.playing').next();
+        if (!next.length) next = $('ol li').first();
+        next.addClass('playing').siblings().removeClass('playing');
+        audio.load($('a', next).attr('data-src'));
+        audio.play();
+      }
+    });
+    
+    // Load in the first track
+    var audio = a[0];
+        first = $('ol a').attr('data-src');
+    $('ol li').first().addClass('playing');
+    audio.load(first);
+
+    // Load in a track on click
+    $('ol li').click(function(e) {
+      e.preventDefault();
+      $(this).addClass('playing').siblings().removeClass('playing');
+      audio.load($('a', this).attr('data-src'));
+      audio.play();
+    });
+    
+  });
+</script>
+{%endblock%}
+{%block contenido%}
+
+  <div class="row" id="actualidad">
+    <div class="encabezado">
+      <div class="container">
+        <div class="row">
+        <div class="span12 encabezado-title">
+          ACTUALIDAD
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="container" style="padding-top:30px">
+      <div class="row">
+          <div class="span7">
+              <div>
+                     {% for nota in notas%}
+                        <div class="cuadronota">
+                          {% if nota.fotos.all.count > 0%}
+                             {%for thumb in nota.fotos.all|slice:"1"%}
+                                  <a href="/notas/{{nota.id}}"> 
+                                   <img class="imagen-noticia-index" width=245 src="{{thumb.foto.url_220x160}}">
+                                  </a>
+                             {%endfor%}
+                          {% else %}
+                            <a href="/notas/{{nota.id}}"> 
+                             <img class="imagen-noticia-index" width=245 src="/files/img/nofoto.png">
+                             </a>
+                         {%endif%}
+                         <div class="titulo-noticia-index">
+                           {{nota.titulo}}
+                         </div>
+                         <div class="detalle-noticia-index">
+                           {{nota.contenido|safe|truncatewords_html:40|striptags}}
+                           <center>
+                           <a href="/notas/{{nota.id}}" class="boton-blue">Leer más</a>
+                           </center>
+                         </div>
+                         
+                       </div>
+                    {% endfor %}   
+                </div> 
+          </div>
+
+          <div class="span5">
+            <div class="titlerss">Últimos audios</div>
+              <div class="widget-audio">
+                <audio preload></audio>
+                  <ol>
+                      {% for obj in audio %}
+                        <li><a href="#" data-src="/uploads/{{obj.audio}}">{{obj.nombre_audio}}</a></li>
+                      {% empty %}
+                        <li><a href="#" data-src="http://s3.amazonaws.com/audiojs/01-dead-wrong-intro.mp3">dead wrong intro</a></li>
+                      {% endfor %}
+                        <br>
+                  </ol>
+              </div><br>
+              <div class="titlerss">Noticias de AMARC Internacional</div>
+              <div class="rssDiv">
+                <div id="divRss"></div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="encabezado">
+      <div class="container">
+        <div class="row">
+        <div class="span12 pink encabezado-title">
+          RADIOS ASOCIADAS
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <br>
+            <div class="span9 radios-index">
+                {%for c in contrapartes%}
+                    <a href="{{c.get_absolute_url}}">{{c.nombre}}<br><span class="frecuencia">{{c.frecuecia}}</span></a></li>  
+                {%endfor%}       
+            </div>
+            <div class="span3">
+              <img style="margin-bottom:10px;" src="/files/img/antena.jpg">
+            </div>
+      </div>
+    </div>
+  </div>
+{%endblock%}

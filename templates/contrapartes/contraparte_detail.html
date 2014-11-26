@@ -1,0 +1,116 @@
+{% extends "baseinterna.html" %}
+{% block title %}{{contra.nombre}}{% endblock %}
+{% block extra_js %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.close').click(function(){
+                $(this).parent().slideUp();
+                return false;
+            });
+        // para resaltar menu
+        $('#asociados-menu').addClass('active');
+        });
+    </script>
+{% endblock %}
+{%block titulo%}Asociados en Nicaragua{%endblock%}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        ASOCIADOS
+                    </div>
+                </div>
+                <div class="span7">
+                 <div class="btn-group acciones">
+                        {% if request.user.get_profile.contraparte.id == contra.id or request.user.is_superuser %}
+                            <a class="btn" href="/contrapartes/editar/{{contra.id}}"><i class="icon-pencil"></i>Editar</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="span7">
+                {% if request.GET.shva == 'ok' %}
+                <div class="alert">
+                    La informaci&oacute;n de su contraparte ha sido editada con &eacute;xito!
+                    <a class="close" href="#">x</a>
+                </div>
+                {% endif %}
+               <h1 class="titulo-grande">{{contra.nombre}}</h1>
+            </div>
+            <div class="span5">
+            </div>
+        </div>
+        <div class="row detalle-full">
+            <div class="span7 divisordoble">
+                <img class="contraparte-detalle-logo"src="{{contra.logo.url_180x160}}" alt="{{contra.nombre}}">
+                <table class="table  table-bordered table-striped table-condensed contraparte-tabla">
+                    <tbody>
+
+                        {%if contra.fundacion%}
+                        <tr>
+                            <td><b>Año de fundación</b></td>
+                            <td>{{contra.fundacion}}</td>
+                        </tr>
+                        {%endif%}
+                        {%if contra.contacto%}
+                        <tr>
+                            <td><b>Contacto</b></td>
+                            <td>{{contra.contacto}}</td>
+                        </tr>
+                        {%endif%}
+                        {%if contra.telefono%}
+                        <tr>
+                            <td><b>Teléfono</b></td>
+                            <td>{{contra.telefono}}</td>
+                        </tr>
+                        {%endif%}
+                        {%if contra.sitio_web%}
+                        <tr>
+                            <td><b>Sitio web</b></td>
+                            <td><a href="{{contra.sitio_web}}">{{contra.sitio_web}}</a></td>
+                        </tr>
+                        {%endif%}
+                    </tbody> 
+                </table>
+                <div class="clean"></div>
+                <br>
+                 {% if contra.temas %}
+                     <div class="destacado-content">Temas</div>
+                     {{contra.temas|safe}}
+                 {% endif %}
+                 <br><br>
+                 {% if contra.generalidades %}
+                     <div class="destacado-content">Generalidades</div>
+                    {{contra.generalidades|safe}}
+                 {% endif %}
+            </div>
+            <div class="span5 divisordoble">
+                <div class="sidebar-title">NOTAS</div>
+                <div class="dividerline"></div>
+                {%for nota in notas%}
+                    <div class="nota-sidebar">
+                        {%for thumb in nota.fotos.all|slice:"1"%} 
+                            <img width="60" height="60" class="" src="{{thumb.foto.url_80x80}}">
+                        {%endfor%}
+                        <div class="nota-sidebar-title">
+                            <a href="/notas/{{nota.id}}">{{nota.titulo}}</a>
+                        </div>
+                        <div class="clean"></div>
+                    </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div> 
+         
+{% endblock %}

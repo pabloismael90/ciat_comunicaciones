@@ -1,0 +1,62 @@
+{% extends "baseinterna.html" %}
+{%block titulo%}Entrar a plataforma{%endblock%}
+{%block descriptitulo%}Favor introduzca su información de usuario registrado.{%endblock%}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        INICIAR SESIÓN
+                    </div>
+                </div>
+                <div class="span7">
+
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+	<div class="container">
+		<div class="row">
+			<div class="span4">
+			<form method="post" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
+				{%if form.errors%}
+				<div class="alert">
+					{{form.non_field_errors}}
+				</div>
+				{%endif%}
+			        <div>
+					{{ form.username.label_tag }}
+					{{ form.username }}
+				</div>
+				<div>
+					{{ form.password.label_tag }}
+					{{ form.password }}
+				</div>					
+				<input type="submit" class="btn btn-info"value="Entrar"></input>
+				<input type="hidden" name="next" value="{{ next }}" />
+			    
+			</form>
+			</div>
+			<div class="span8">
+				<div class="alert alert-info">
+					<p>Esta es una plataforma privada de aliados y asociados a AMARC </p>
+
+					<p>Si usted tiene algún problema para entrar a su cuenta o desea solicitar una nueva cuenta para entrar a la plataforma, le sugerimos escribir a los siguientes contactos:</p>
+
+					<p>Carlos Rocha
+					<b>carlos@simas.org.ni</b></p>
+
+					<p>Martha Olivera
+					<b>martha@simas.org.ni</b></p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,154 @@
+{% extends "baseinterna.html" %}
+{% block extra_js %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+         // para resaltar menu
+        $('#producciones-menu').addClass('active');
+    });
+</script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+{%endblock%}
+{%block title%}Audios{%endblock%}
+{%block titulo%}Producciones{%endblock%}
+{%block descriptitulo%}Aquí podrá encontrar las producciones radiofónicas elaboradas por las asociadas y aliados  a fin de favorecer el ejercicio del derecho a la información y a la libertad de expresión de la ciudadanía.{%endblock%}
+{% block contenido %}
+<style type="text/css">
+  .wraap{margin:0 auto 0 auto; width:390px;}
+</style>
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        Producciones Multimedia
+                    </div>
+                </div>
+                <div class="span7">
+
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                <img src="/files/img/audiosicon.png">
+                <span class="titulo-producciones">
+                    Audios
+                </span>
+                <br><br><br>
+                {% if flags == 0 %}
+                  {% for obj in audios %}
+                    <div class="elemento-audio">
+                    <div class="nombre-radio">
+                        
+                    </div>
+                    <div class="player-right">
+                        <div class="player">
+                            <audio src="/uploads/{{obj.audio}}" preload="auto" />
+                        </div>
+                        <br>
+                        {{obj.nombre_audio}}
+                        <a href="/uploads/{{obj.audio}}" class="boton-blue-leer ">Descargar</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                {% empty %}
+                    <p>No hay audios</p>
+                {% endfor %}
+                {%else%}
+                  {% for obj in lista_audio %} 
+                    <div class="elemento-audio">
+                    <div class="nombre-radio">
+                        {{nombre}}
+                    </div>
+                    <div class="player-right">
+                        <div class="player">
+                            <audio src="/uploads/{{obj.1}}" preload="auto" />
+                        </div>
+                        <br>
+                        {{obj.0}}
+                        <a href="/uploads/{{obj.audio}}" class="boton-blue-leer ">Descargar</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                {% empty %}
+                    <p>No hay audios</p>
+                {% endfor %}
+                {% endif %}
+                
+
+                <div class="pagination wraap">
+                  <ul>
+                    {% if audios.has_previous %}
+                    <li>
+                      <a href="{% url todos_audios %}?page={{ audios.previous_page_number }}">
+                        ← Anterior</a>
+                    
+                    {% endif %}
+
+                    <span class="active">
+                      Pagina {{ audios.number }} de {{ audios.paginator.num_pages }}.
+                    </span>
+
+
+                    {% if audios.has_next %}
+                   
+                     <a href="{% url todos_audios %}?page={{ audios.next_page_number }}">
+                            Siguiente →</a>
+                     </li>
+                     {% endif %}
+                  </ul>
+                </div>
+
+            </div>
+            <div class='span3 sidebar-radios'>
+                <center>
+                <div class="btn-group">
+                  <a href="/contrapartes/audios" class="btn btn-large active">Audios</a>
+                  <a href="/contrapartes/videos" class="btn btn-large ">Videos</a>
+                </div>
+                </center>
+                <br>
+                <center>
+                <form class="form-search">
+                    <div class="input-prepend">
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                    <input type="text" class="span2 ">
+                    </div>
+                </form>
+                </center>
+                <div class="tabbable producciones-tab">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Radios</a></li>
+                    <li><a href="#tab2" data-toggle="tab">Etiquetas</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                      {% for obj in asociados %}
+                        <a href="/contrapartes/radio_audio/{{obj.id}}">{{obj.siglas}}</a>
+                      {% empty %}
+                        <p>no hay asociados</p>
+                      {% endfor %}
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                      {% for obj in clave %}
+                        <a href="#" class="etiqueta"><i class="icon-tag"></i>{{obj}}</a>
+                      {% empty %}
+                        <p>No hay etiquetas aun</p>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

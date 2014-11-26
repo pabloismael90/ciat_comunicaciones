@@ -1,0 +1,445 @@
+{% extends "baseadmin.html" %}
+{% block extra_js %}
+<link href="/files/css/jquery.autocomplete.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/files/js/autocompletejs/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="/files/js/colors.js"></script>
+<script type="text/javascript" >
+$(document).ready(function() {
+	$(".fancybox").fancybox({
+    	openEffect	: 'elastic',
+    	closeEffect	: 'elastic',
+    	autoSize : true,
+    	width : 600,
+    	height : 1000,
+
+    	helpers : {
+    		title : {
+    			type : 'inside'
+    		}
+    	}
+    	//afterClose: function() { window.location.href='/foros/ver/{{discusion.id}}';}
+	});
+	if (window.location.href.indexOf('#cmt')!=-1){
+	    var id = window.location.href.split('#')[1];
+	    $('html, body').animate({
+            scrollTop: $('#'+id).offset().top
+        }, 1000);
+
+        $("#"+id)
+        	.animate({backgroundColor: '#BEDA53'}, 10)
+        	.animate( { backgroundColor: '#F5F5F5' }, 2000);
+	}
+ $('.username').tooltip({'placement':'bottom'});	
+});
+
+</script>
+{% endblock %}
+
+{% load magicembed_tags %}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        FORO
+                    </div>
+                </div>
+                <div class="span7">
+                	{% if discusion.contraparte == request.user or request.user.is_superuser %}
+                    <div class="btn-group filtrospais">
+                        <a href="/foros/editar/{{discusion.id}}" class="btn"><i class="icon-pencil"></i>Editar foro</a>
+                        <a href="#formaporte" class="btn"><i class="icon-comment"></i>Aportar al foro</a>
+                        <a class="btn" data-toggle="modal" data-target="#myModal"  ><i class="icon-remove-sign"></i>Borrar</a>
+                    </div>
+                    {%endif%}
+		               <div class="modal fade hide" id="myModal">
+		                          <div class="modal-header">
+		                            <a class="close" data-dismiss="modal">×</a>
+		                            <h3>¿Está seguro?</h3>
+		                          </div>
+		                          <div class="modal-body">
+		                            <p>El foro y todos sus aportes serán borrados permanentemente y no podrán ser recuperados</p>
+		                          </div>
+		                          <div class="modal-footer">
+		                            <a href="#" data-dismiss="modal" class="btn">No Borrar</a>
+		                            <a href="/foros/borrar/{{discusion.id}}" class="btn btn-danger">Borrar Permanentemente</a>
+		                          </div>
+		                 </div>  
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+	<div class="container">
+		{% if request.GET.b == 'editado' %}
+            <div class="alert fade in">
+                 El foro ha sido editado
+                <a class="close" href="#" data-dismiss="alert">x</a>
+            </div>
+        {% endif %}
+		<div class="row">
+			<div class="span8">
+				<h1 class="titulo-grande">{{discusion.nombre}}</h1>
+				<div class="extrainfofull"></div>
+				{{discusion.contenido|safe}}
+				{% if discusion.fotos.all %}
+				<div class="sidebar-title">Fotos</div>
+					{%if discusion.fotos.all%}
+						<div class="thumbs" style="margin-top:10px">
+						{% for img in discusion.fotos.all%}
+							<a class="fancybox" rel="galleryforo" title="{{img.nombre_img}}" href="{{img.foto.url_640x480}}"><img src="{{img.foto.url_80x80}}" alt="{{img.nombre}}" title="{{img.nombre}}"></a>
+						{% endfor %}
+						<div class="clean"></div>
+					    </div>
+					{%endif%}
+				{%endif%}
+			</div>
+			<div class="span4">
+				<table class="table table-bordered table-condensed table-striped">
+					<tbody>
+						<tr>
+							<td><img src="/files/img/user.png"></td>
+							<td><b>Creado por</b></td>
+							<td>{{discusion.contraparte}} - {{discusion.contraparte.userprofile.contraparte.siglas}}</td>
+						</tr>
+						<tr>
+							<td><img src="/files/img/date.png"></td>
+							<td><b>Fecha de creación</b></td>
+							<td>{{discusion.creacion}}</td>
+						</tr>
+						<tr>
+							<td><img src="/files/img/group.png"></td>
+							<td><b>Apertura</b> </td>
+							<td>{{discusion.apertura}}</td>
+						</tr>
+						<tr>
+							<td><img src="/files/img/group_delete.png"></td>
+							<td><b>Cierre de aportes</b></td>
+							<td>{{discusion.cierre}}</td>
+						</tr>
+						<tr>
+							<td><img src="/files/img/user_comment.png"></td>
+							<td><b>Reunión skype</b></td>
+							<td>{{discusion.fecha_skype}}</td>
+						</tr>
+						<tr>
+							<td><img src="/files/img/page_edit.png"></td>
+							<td><b>Memoria</b></td>
+							<td>{{discusion.memoria}}</td>
+						</tr>
+					</tbody>
+				</table>
+				{%if discusion.documentos.all%}
+					<div class="sidebar-title">Documentos</div>
+	                <table class="table  table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for doc in discusion.documentos.all%}
+	                    <tr>
+	                        <td>{{doc.nombre_doc}}</td>
+	                        <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
+	                    </tr>
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+				{%if discusion.video.all%}
+					<div class="sidebar-title">Videos</div>
+	                <table class="table table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for video in discusion.video.all%}
+	                    <tr>
+	                        <td><a data-toggle="modal" data-target="#myModal{{video.id}}" href="#"><img  src="{{video.url|magicthumbnail}}" width="290" height="150">
+	                        	<img src="/files/img/player.png" class="player-icon"></a>
+	                        </td>
+	                    </tr>
+	                        <div class="modal fade hide modal-video" id="myModal{{video.id}}">
+	                          <div class="modal-header">
+	                            <a class="close" data-dismiss="modal">×</a>
+	                            <h3>{{video.nombre_video}}</h3>
+	                          </div>
+	                          <div class="modal-body">
+	                            <p>{{ video.url|magicembed:"640x480" }}</p>
+	                          </div>
+	                          <div class="modal-footer">
+	                            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+	                          </div>
+	                        </div>  
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+				{%if discusion.audio.all%}
+					<div class="sidebar-title">Audio</div>
+	                <table class="table  table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for audio in discusion.audio.all%}
+	                    <tr>
+	                    	<td>{{audio.nombre_audio}}</br>
+								<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="280" height="20"
+								    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+								    <param name="movie" value="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true" />
+								    <param name="wmode" value="transparent" />
+								    <embed wmode="transparent" width="280" height="20" src="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true"
+								    type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+								</object>
+	                    	</td>
+	                    </tr>
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<div class="dividerline"></div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="span12">
+				<div class="encabezado-title raya">APORTES</div>
+			</div>
+		</div>
+
+		{% for respuesta in discusion.aportes_set.all %}
+
+		<div class="row " id="{{respuesta.id}}">
+			<div class="span1">
+				<div class="label"><center>Aporte </center></div>
+				<div class="user-info">{{respuesta.fecha|date:"d M"}}</div>
+				{%if respuesta.user.userprofile.avatar %}
+				<img src="{{respuesta.user.userprofile.avatar.url_70x60}}"><br>
+				{%else%}
+				<img src="/files/img/avatarpeque.png"><br>
+				{%endif%}
+				<small><a class="username" href="" rel="tooltip" title="{{respuesta.user.first_name}} - {{respuesta.user.userprofile.contraparte}}">{{respuesta.user}}</a></small>
+				{% if respuesta.user == request.user or request.user.is_superuser %}
+					<div class="btn-group foro-edit">
+					    <a class="btn btn-mini" href="/foros/aporte/editar/{{respuesta.id}}"><i class="icon-pencil"></i></a>
+					    <a class="btn btn-mini" data-toggle="modal" data-target="#myModal"><i class="icon-trash"></i></a>
+				        </div>
+				{% endif %}
+                <div class="modal fade hide" id="myModal">
+                  <div class="modal-header">
+                    <a class="close" data-dismiss="modal">×</a>
+                    <h3>¿Está seguro?</h3>
+                  </div>
+                  <div class="modal-body">
+                    <p>El aporte será borrado permanentemente y no podrá ser recuperado</p>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">No Borrar</a>
+                    <a href="/foros/aporte/borrar/{{respuesta.id}}"class="btn btn-danger">Borrar Permanentemente</a>
+                  </div>
+                </div>  
+			</div>
+			<div class="span7">
+				{{respuesta.contenido|safe}}
+					<p>
+				   	<a data-fancybox-type="iframe" href="/foros/ver_comentario/{{respuesta.id}}" class="btn btn-mini btn-warning fancybox"><i class="icon-comment icon-white"></i>Comentar</a>
+				    </p>				    
+			        {% for comentario in respuesta.comentarios_set.all %}					
+		       		<div class="well" id="cmt{{comentario.id}}">{{comentario.comentario|safe}}
+		       			<div class="user-info">
+		       				<i>escrito por</i> 
+							{%if comentario.usuario.userprofile.avatar %}
+							<img src="{{comentario.usuario.userprofile.avatar.url_70x60}}" width="25" height="25">
+							{%else%}
+							<img src="/files/img/avatarpeque.png" width="25" height="25">
+							{%endif%}
+		       				<b><a class="username" href="" rel="tooltip" title="{{comentario.usuario.first_name}} - {{comentario.usuario.userprofile.contraparte}}">{{comentario.usuario.username}}</a></b> - {{comentario.fecha|date:"d M"}}
+					        {% if comentario.usuario == request.user or request.user.is_superuser %}
+							<div class="btn-group foro-edit" style="float:right;">
+					    			<a data-fancybox-type="iframe"  class=" fancybox btn btn-mini" href="/foros/comentario/editar/{{comentario.id}}"><i class="icon-pencil"></i></a>
+					    			<a class="btn btn-mini" data-toggle="modal" data-target="#myModalcomment"><i class="icon-trash"></i></a>
+				        		</div>
+				       		{% endif %}
+			                <div class="modal fade hide" id="myModalcomment">
+			                  <div class="modal-header">
+			                    <a class="close" data-dismiss="modal">×</a>
+			                    <h3>¿Está seguro?</h3>
+			                  </div>
+			                  <div class="modal-body">
+			                    <p>El comentario será borrado permanentemente y no podrá ser recuperado</p>
+			                  </div>
+			                  <div class="modal-footer">
+			                    <a href="#" data-dismiss="modal" class="btn">No Borrar</a>
+			                    <a href="/foros/comentario/borrar/{{comentario.id}}"class="btn btn-danger">Borrar Permanentemente</a>
+			                  </div>
+			                </div>  
+		       			</div>
+		       		</div>
+			        {% endfor %}
+			</div>
+			<div class="span4">
+				{%if respuesta.fotos.all%}
+				<div class="sidebar-title">Fotos</div>
+						<div class="thumbs" style="margin-top:10px">
+						{% for img in respuesta.fotos.all%}
+							<a class="fancybox" rel="gallery{{respuesta.id}}" title="{{imagen.nombre_img}}" href="{{img.foto.url_640x480}}"><img src="{{img.foto.url_80x80}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}"></a>
+						{% endfor %}
+						<div class="clean"></div>
+					    </div>
+					{%endif%}
+				{%if respuesta.adjuntos.all %}
+					<div class="sidebar-title">Documentos</div>
+	                <table class="table  table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for doc in respuesta.adjuntos.all%}
+	                    <tr>
+	                        <td>{{doc.nombre_doc}}</td>
+	                        <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
+	                    </tr>
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+				{%if respuesta.video.all%}
+					<div class="sidebar-title">Videos</div>
+	                <table class="table  table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for video in respuesta.video.all%}
+	                    <tr>
+	                        <td><a href="" data-toggle="modal" data-target="#myModalresp{{video.id}}"><img src="{{video.url|magicthumbnail}}" width="290" height="150"><img src="/files/img/player.png" class="player-icon"></a></td>
+	                    </tr>
+	                        <div class="modal fade hide modal-video" id="myModalresp{{video.id}}">
+	                          <div class="modal-header">
+	                            <a class="close" data-dismiss="modal">×</a>
+	                            <h3>{{video.nombre_video}}</h3>
+	                          </div>
+	                          <div class="modal-body">
+	                            <p>{{ video.url|magicembed:"640x480" }}</p>
+	                          </div>
+	                          <div class="modal-footer">
+	                            <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+	                          </div>
+	                        </div> 
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+				{%if respuesta.audio.all%}
+					<div class="sidebar-title">Audio</div>
+	                <table class="table  table-bordered table-condensed doc-sidebar">
+	                  <tbody>
+	                    {% for audio in respuesta.audio.all%}
+	                    <tr>
+	                    	<td>{{audio.nombre_audio}}</br>
+								<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="280" height="20"
+								    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab">
+								    <param name="movie" value="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true" />
+								    <param name="wmode" value="transparent" />
+								    <embed wmode="transparent" width="280" height="20" src="/files/js/singlemp3player.swf?file=/uploads/{{audio.audio}}&showDownload=true"
+								    type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+								</object>
+	                    	</td>
+	                    </tr>
+	                    {% endfor %}
+	                  </tbody>
+	                </table>
+				{%endif%}
+			</div>
+		</div>
+		<hr>
+		{% endfor %}
+
+	</div>
+</div>
+
+<div class="row body-content" id="formaporte" style="padding-top:0px">
+	<div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="encabezado-title raya">
+                        AGREGAR APORTE A ESTE FORO
+                    </div>
+                </div>
+            </div>
+		<div class="row">
+        <form  enctype="multipart/form-data" action="." method="post">{% csrf_token %}
+            {{ form.media }}
+			<div class="span9">
+				<div class="well">
+                {%if form.errors%}
+                        <div class="alert alert-error"><b>Favor corregir los siguientes errores</b><br>{{form.errors}}</div>
+                {%endif%}
+                 {{form.as_p}}
+                <div class="tabbable tabs-left">
+                        <ul class="nav nav-tabs nav-tab-media">
+                          <li class="active"><a href="#fotos" data-toggle="tab"><i class="icon-camera"></i>Fotos e imágenes</a></li>
+                          <li><a href="#documentos" data-toggle="tab"><i class="icon-file"></i>Documentos</a></li>
+                          <li><a href="#videos" data-toggle="tab"><i class="icon-film"></i>Videos</a></li>
+                          <li><a href="#audios" data-toggle="tab"><i class="icon-volume-up"></i>Audios</a></li>
+                        </ul>
+                        <div class="tab-content tab-media">
+                          <div class="tab-pane active" id="fotos">
+                               <span class="label label-warning">FOTOS</span><hr>
+                               {{ form2.management_form }}
+                                {% for foto in form2 %}
+                                <div class="media-form-inline">
+                                        {{foto.label_tag}}
+                                        {{foto}}
+                                </div>
+                                {% endfor %}
+                                <hr>
+                          </div>
+                          <div class="tab-pane" id="documentos">
+                                <span class="label label-warning">DOCUMENTOS</span><hr>
+                                {{ form3.management_form }}
+                                {% for docu in form3 %}
+                                <div class="media-form-inline">
+                                        {{docu.label_tag}}
+                                        {{docu}}
+                                </div>
+                                {% endfor %}
+                                <hr>
+                          </div>
+                          <div class="tab-pane" id="videos">
+                                <span class="label label-warning">VIDEOS</span><hr>
+                                {{ form4.management_form }}
+                                {% for video in form4 %}
+                                <div class="media-form-inline">
+                                        {{video.label_tag}}
+                                        {{video}}
+                                </div>
+                                {% endfor %}
+                                <hr>
+                          </div>
+                          <div class="tab-pane" id="audios">
+                                <span class="label label-warning">AUDIOS</span><hr>
+                                {{ form5.management_form }}
+                                {% for audio in form5 %}
+                                <div class="media-form-inline">
+                                        {{audio.label_tag}}
+                                        {{audio}}
+                                </div>
+                                {% endfor %}
+                                <hr>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+			</div>
+			<div class="span3">
+                <div class="alert "><i class="icon-info-sign"></i>
+                  Un aporte al foro
+                </div>
+                <div class="well" id="actionbuttons">
+                <input class="btn btn-large btn-info " style="" type="submit" id="submitfoo" value="Guardar" />
+                <a href="/foros" class="btn btn-large">Cerrar</a>
+                </div>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock %}

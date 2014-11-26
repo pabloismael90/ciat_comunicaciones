@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load google_cse_tags %}
+<head>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <title>{%block title%}AMARC{%endblock%}</title>
+  <!--[<link type="text/css" rel="stylesheet"  href="/files/css/cafod.css">-->
+  {% load compress %} 
+  {% compress css %}
+    <link type="text/css" rel="stylesheet"  href="/files/bootstrap/css/bootstrap.min.css" >
+    <link type="text/css" rel="stylesheet"  href="/files/css/amarc.css">
+    <link type="text/css" rel="stylesheet"  href="/files/css/jquery.fancybox.css" >
+    <link type="text/css" rel="stylesheet"  href="/files/css/jqueryui.css" >
+    <link type="text/css" rel="stylesheet" href="/files/css/font-awesome.css" >
+  {% endcompress %}
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+   <script type="text/javascript" src="/files/js/audio.min.js"></script>
+    <script type="text/javascript" src="/files/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/files/bootstrap/js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="/files/js/fancybox.pack.js"></script>
+    <script type="text/javascript" src="/files/js/jqueryui.js"></script>
+    <script type="text/javascript">
+    (function() {
+      var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+      po.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+    
+    <script type="text/javascript">
+      $(function() {
+      $("#id_apertura , #id_cierre , #id_fecha_skype , #id_memoria, #id_inicio, #id_final").datepicker({ 
+          dateFormat: 'dd/mm/yy', 
+          dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'], 
+          monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+          changeYear: true
+        });
+    });
+    </script>
+      <!--[if IE 7]>
+      <link href="{{ STATIC_URL }}/files/css/font-awesome-ie7.css" rel="stylesheet">
+    <![endif]-->
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  {%block extra_js%}{%endblock%}
+  <script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40921144-1', 'amarcnicaragua.org');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+
+{% block header %}
+  
+    <div class="navbar navbar-static-top baseinterna">
+        <div class="navbar-inner">
+            <div class="container">
+              <a class="brand" href="/">
+                AMARC NICARAGUA 
+              </a>
+              <ul class="nav pull-right">
+                  <li id="inicio-menu"><a href="/"><i class="icon-home"></i>Inicio</a></li>
+                  <li id="noticias-menu"><a href="/notas">Noticias</a></li>
+                  <li id="eventos-menu"><a href="/agendas/eventos">Eventos</a></li>
+                  <li id="asociados-menu"><a href="/contrapartes">Asociados</a></li>
+                  <li id="aliados-menu"><a href="/contrapartes/lista">Aliados</a></li>
+                  <li id="producciones-menu"><a href="/contrapartes/audios">Producciones</a></li>
+                  
+                  <li class="divider-vertical"></li>
+                  {% if user.username %}
+                    <li>
+                      <div class="btn-group">
+                      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                        Bienvenido <strong>{{ user.username }}</strong>
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li ><a href="/foros/perfil"><i class="icon-user icon-white opacidad-50"></i>Ver mi perfil</a></li>
+                        <li><a href="/accounts/logout" title="Salir de Administración"><i class="icon-off opacidad-50 icon-white"></i>Salir</a></li>
+                      </ul>
+                    </li>
+                  </div>
+                  {% else %}
+                    <li><a class="boton-pink" href="/accounts/login"><i class="icon-user"></i>Entrar</a></li>
+                  {% endif %}
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="header">
+      <div class="container">
+        <div class="row">
+          <div class="span12">
+              <br>
+              <h3>{%block titulo%}{%endblock%}</h3>
+              <p class="descrip-titulo">{%block descriptitulo%}{%endblock%}</p>
+              <br>
+          </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{%block contenido%}{%endblock%}
+
+{%block footer%}
+  <footer>
+      <div class="row dividerline">
+      </div>
+      <div class="row footer">
+        <div class="container">
+            <div class="row">
+              <div class="span3 footer-block">
+                 <center>
+                    <img src="/files/img/amarc_nicaragua_s.png">&nbsp;&nbsp;
+                    <a href="http://www2.amarc.org/?q=es"><img src="/files/img/amarc_s.png"></a>
+                    <br>
+                    AMARC - Nicaragua, forma parte de <a href="http://www2.amarc.org/?q=es">AMARC Internacional</a>
+                 </center>
+              </div>
+              <div class="span3 footer-block">
+                 <center>
+                    <a href="http://simas.org.ni"><img style="margin-bottom:10px;" src="/files/img/simas_s.png"></a>
+                    <br>
+                    El desarrollo de esta plataforma contó con la colaboración de <a href="http://simas.org.ni">SIMAS</a>
+                 </center>
+              </div>
+              <div class="span5 offset1 footer-block">
+                  <h4>CONTACTO</h4>
+                  <div class="contacto">
+                    <strong>Wendy Quintero</strong><br>
+                    Radio Camoapa<br>
+                    <a href="#">wmercedes@gmail.com</a>
+                  </div>
+                  <div class="contacto">
+                    <strong>Argentina Olivas</strong><br>
+                    Radio Vos<br>
+                    <a href="#">contacto@radiovos.org</a>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  </footer>
+{%endblock%}
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends "baseadmin.html" %}
+{%block contenido%}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        BIENVENIDO <b style="text-transform:uppercase;">{{request.user.username}}</b>
+                    </div>
+                </div>
+                <div class="span7">
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+      <div class="container">
+            <div class="row">
+                <div class="span3">
+                	<div class="well">
+                		<div><img src="{{user.userprofile.avatar.url_70x60}}"></div>
+                		<div>{{user.username}}</div>
+                		<div>{{user.email}}</div>
+                		<a href="/contrapartes/usuario/editar/" class="btn">Editar</a>
+                	</div>
+                </div>
+                <div class="span3">
+                	<div class="well">
+                		<div><img src="{{user.userprofile.contraparte.logo.url_70x60}}" /> </div>
+                		<div>{{user.userprofile.contraparte.nombre}}</div>
+                		<div>{{user.userprofile.contraparte.pais.nombre}}</div>
+                		<a href="/contrapartes/editar/{{user.userprofile.contraparte.id}}" class="btn">Editar</a>
+                	</div>
+                </div>
+                <div class="span3">
+                    <div class="well">
+                        <div><img src="/files/img/imagenpdf.png" height="70" width="60"/> </div>
+                        <h5>Manual de usuario</h5>
+                        <a href="/files/manual.pdf" class="btn">Descargar</a>
+                    </div>
+                </div>
+                <div class="span6" style="display:none">
+                	<div class="alert">Espacio reservado para un calendario de actividades<br><br><br>
+                        {% for agenda in agendas %}
+                            {{agenda.evento}}<br>
+                            {{agenda.descripcion|safe|truncatewords:10 }}<br>
+                        {% endfor %}
+                        <br><br><br><br></div>
+                </div>
+            </div>
+      </div>
+<br><br><br><br><br><br><br><br><br><br>
+
+</div>
+
+{%endblock%}

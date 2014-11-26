@@ -1,0 +1,61 @@
+{% extends "baseinterna.html" %}
+{% block extra_js %}
+<script type='text/javascript'>
+    $(document).ready(function() {
+         // para resaltar menu
+        $('#aliados-menu').addClass('active');
+    });
+</script>
+{%endblock%}
+{%block titulo%}Aliados en Nicaragua{%endblock%}
+{%block descriptitulo%}La Asociación Mundial de Radios Comunitaria (AMARC), capitulo Nicaragua, cuenta como aliados estratégicos a organizaciones sociales que comparten su visión institucional y forman parte de su red de información y conocimientos al servicio de la ciudadanía{%endblock%}
+{% block contenido %}
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        ALIADOS
+                    </div>
+                </div>
+                <div class="span7">
+
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                {% for obj in object_list  %}
+                    <div class='aliado-link'>
+                        <center>
+                            {% if obj.logo %}
+                            <a href="/contrapartes/detalle/{{obj.id}}"><img src="{{obj.logo.url_180x160}}" ></a>
+                            {%else%}
+                            <br><br><br>
+                            {%endif%}
+                            <br><br> 
+                        <a href="/contrapartes/detalle/{{obj.id}}" class="titulo-medio">{{obj.nombre}}</a>
+                        </center> 
+                    </div>
+                {% empty %}
+                    <p>No hay aliados</p>
+                {% endfor %}
+                    
+
+            </div>
+            <div class='span3 sidebar-radios'>
+                <br>
+                <center>
+                <img src="/files/img/amarc_sidebar.png"><br><br>
+                </center>
+                <p>Lista que demuestra las organizaciones aliadas de AMARC Nicaragua en la actualidad</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends "baseinterna.html" %}
+{% block extra_js %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/custom.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/jquery.cookie.js"></script>
+<script type='text/javascript'>
+    $(document).ready(function() {
+         // para resaltar menu
+        $('#asociados-menu').addClass('active');
+
+       var styles = [{"featureType": "landscape","stylers": [{"hue": "#FFA800"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]},{"featureType": "road.highway","stylers": [{"hue": "#FF0300"},{"saturation": -100},{"lightness": 61.39999999999998},{"gamma": 1}]},{"featureType": "road.arterial","stylers": [{"hue": "#FBFF00"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]},{"featureType": "road.local","stylers": [{"hue": "#00FFFD"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]},{"featureType": "water","stylers": [{"hue": "#0094FF"},{"saturation": 39.39393939393935},{"lightness": -12.70588235294116},{"gamma": 1}]},{"featureType": "poi","stylers": [{"hue": "#9FFF00"},{"saturation": 0},{"lightness": 0},{"gamma": 1}]}]
+
+  var styledMap = new google.maps.StyledMapType(styles,
+  {name: "Styled Map"});
+
+  var mapOptions = {
+        center: new google.maps.LatLng(12.605, -85.224),
+        zoom: 8,
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
+      }
+  var map = new google.maps.Map(document.getElementById('mapa'),
+                                    mapOptions);
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
+
+   $.getJSON('/contrapartes/ver_mapa_completo/', function(data){
+          $.each(data, function(i, elemento){
+              var latlng = new google.maps.LatLng(elemento.lat, elemento.lon);
+              var marker = new google.maps.Marker({
+                  position: latlng,
+                  map: map,
+                  name: elemento.nombre,
+                  icon: '/files/img/wifi.png'
+              });
+              google.maps.event.addListener(marker, "click", function() {
+               var html = '<b>'+ elemento.nombre +'</b> ' +
+                          '<br><a href="'+ elemento.ruta +'" class="btn">Ver detalle</a>';
+                infowindow = new google.maps.InfoWindow({
+                          content: html,
+                          zIndex: 999,
+                });
+                infowindow.open(map, this);
+                });
+          });
+      });
+
+
+
+    });
+</script>
+{%endblock%}
+{%block titulo%}Asociados en Nicaragua{%endblock%}
+{%block descriptitulo%}Somos un grupos de radios comunitarias, que junto a organizaciones aliadas promueven el desarrollo social, los derechos humanos, la diversidad cultural, la pluralidad de informaciones y opiniones, a fin de  fortalecimiento de los vínculos que hacen a la esencia de la identidad cultural y social.{%endblock%}
+{% block contenido %}
+<style type="text/css" media="screen">
+#mapa img {
+  max-width: none !important;
+}  
+</style>
+<div class="row">
+    <div class="encabezado">
+      <div class="container">
+            <div class="row">
+                <div class="span5">
+                    <div class="encabezado-title">
+                        CONTRAPARTES
+                    </div>
+                </div>
+                <div class="span7">
+
+                </div>
+            </div>
+      </div>
+    </div>
+</div>
+<div class="row body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+
+                <!-- Mapa ejemplo, modificar luego por el real -->
+                <div id="mapa" style="width: 700px; height: 700px;"></div>
+
+            </div>
+            <div class='span3 sidebar-radios'>
+                <center>
+                <div class="btn-group">
+                  <a href="/contrapartes/mapa" class="btn btn-large active">Mapa</a>
+                  <a href="/contrapartes/" class="btn btn-large ">Lista</a>
+                </div>
+                </center>
+                <br>
+                <center>
+                <img src="/files/img/amarc_sidebar.png"><br><br>
+                </center>
+                <p>Mapa que demuestra la distribucion de las radios comunitarias pertenecientes a AMARC Nicaragua en la actualidad</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
