@@ -723,10 +723,38 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 }
 /* == END media queries == */
 
-.colorong{
-	background-color: #5d8c3b;
-	color: #5d8c3b;
+
+.list-org{
+	margin-left: 10px;
+	list-style: none;
 }
-.ong-list{
-	margin-top: 10px;
+
+.title-widget-org { 
+	color: #898989; 
+	font-size: 13px; 
+	font-weight: 300; 
+	line-height: 1; 
+	text-transform: uppercase; 
+	margin: 0 0 20px 0; 
+	position: relative; 
+}
+
+.title-widget-org:before { 
+	content: ""; 
+	position: absolute; 
+	left: -30px; 
+	top: -2px; 
+	height: 18px; 
+	width: 5px; 
+	background-color: #5d8c3b; 
+}
+.txt-black{
+	color: black;
+}
+.paises .btn-default {
+background-color: #95a5a6;
+}
+.paises .btn-default:hover {
+background-color: #ecf0f1;
+color: #1d1d1d !important;
 }
