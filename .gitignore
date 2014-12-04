@@ -8,3 +8,5 @@ static_media/uploads/
 *.db
 *.sqlite3
 CACHE
+*.bd
+*.sql
