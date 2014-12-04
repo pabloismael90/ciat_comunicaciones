@@ -17,52 +17,63 @@
 
   </head>
   
-  <body role="document" class="single-event">
+  <body role="document" class="single-post">
   
     <!-- device test, don't remove. javascript needed! -->
     <span class="visible-xs"></span><span class="visible-sm"></span><span class="visible-md"></span><span class="visible-lg"></span>
     <!-- device test end -->
     
-       <div id="k-head" class="container"><!-- container + head wrapper -->
+    <div id="k-head" class="container"><!-- container + head wrapper -->
     
-        <div class="row"><!-- row -->
+    	<div class="row"><!-- row -->
         
-            <div class="col-lg-12">
         
-                <div id="k-site-logo" class="pull-left"><!-- site logo -->
+        	<div class="col-lg-12">
+        
+        		<div id="k-site-logo" class="pull-left"><!-- site logo -->
                 
                     <h1 class="k-logo">
                         <a href="index-2.html" title="Home Page">
-                            <img src="img/site-logo.jpg" alt="Site Logo" class="img-responsive" />
+                            <img src="img/site-logo.png" alt="Site Logo" class="img-responsive" />
                         </a>
                     </h1>
                     
                     <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
             
-                </div><!-- site logo end -->
+            	</div><!-- site logo end -->
 
-                <nav id="k-menu" class="k-main-navig"><!-- main navig -->
+            	<nav id="k-menu" class="k-main-navig"><!-- main navig -->
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
-                        <li>
-                            <a href="listnews.html" title="Nuevas Noticias">Noticias</a>
-                        </li>
-                        <li>
-                            <a href="events.html" title="Proximos Eventos">Eventos</a>
-                        </li>
-                        <li>
-                            <a href="gallery-single.html" title="Organizaciones Alidas">Contrapartes</a>
-                        </li>
 
                         <li>
-                            <a href="about-us.html" title="Mision y Vision">Acerca de</a>
+                            <i class="fa fa-file-text-o fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="#" title="More Templates">Mis Notas</a>
                         </li>
                         <li>
-                            <a href="#" class="Pages Collection" title="Entra">Inicio de Sesion</a>
+                            <i class="fa fa-calendar fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="#" title="More Templates">Mi Agenda</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-comments-o fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="#" title="More Templates">Foro</a>
+                        </li>
+                        <li>
+                            <i class="fa fa-folder-o fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="#" class="Pages Collection" title="More Templates">Documentos</a>
+
+                        </li>
+                        <li>
+                            <i class="fa fa-youtube-play fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="about-us.html" title="How things work">Multimedia</a>
+                        </li>
+                        <li>
+                         <i class="fa fa-envelope-o fa-3x" style="margin-left: 0.5em !important; margin-bottom: 0.1em !important"></i>
+                            <a href="contact-us.html" title="School Contacts">Mensajes</a>
                         </li>
                     </ul>
         
-                </nav><!-- main navig end -->
+            	</nav><!-- main navig end -->
             
             </div>
             
@@ -75,89 +86,188 @@
     	<div class="container"><!-- container -->
         
         	<div class="row"><!-- row -->
-            
+        <!--     
                 <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
                 
-                    <form action="#" id="top-searchform" method="get" role="search">
+                 <!--    <form action="#" id="top-searchform" method="get" role="search">
                         <div class="input-group">
                             <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
                         </div>
                     </form>
                     
-                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div> --><!-- toggle search button -->
                 
-                </div><!-- top search end -->
+                </div><!-- top search end --> 
             
-            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
-                
-                	<ol class="breadcrumb">
-                    	<li><a href="index-2.html">Inicio</a></li>
-                        <li><a href="events.html">Calendario de Eventos</a></li>
-                        <li class="active">Annual Alumni Game</li>
-                    </ol>
-                    
-                </div><!-- breadcrumbs end -->               
+                          
                 
             </div><!-- row end -->
             
-            <div class="row no-gutter col-lg-8 col-md-8"><!-- row -->
+            <div class="row no-gutter" style="margin-top: 1em !important"><!-- row -->
                 
-                <div class=""><!-- doc body wrapper -->
+                <div class="col-lg-12 col-md-12"><!-- doc body wrapper -->
                 	
                     <div class="col-padded"><!-- inner custom column -->
-                            <div class="col-lg-12 col-md-12">
-                                <div class="btn-group paises ">
-                                  <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
-                                  <button type="button" class="btn btn-default">
-                                  Trifinio
-                                  </button>
-                                  <button type="button" class="btn btn-default">
-                                  Nicanorte
-                                  </button>
-                                  <button type="button" class="btn btn-default">
-                                  AH-RD
-                                  </button>
-                                </div>
-                                <hr />
-                            </div>
                     
                     	<div class="row gutter"><!-- row -->
                         
-                        	<div class="col-lg-12 col-md-12">
-                                aqui va el calendario
-                                    
+                        	<div class="k-article-summary col-lg-12 col-md-12">
+                                
+                                <div class="col-lg-2 col-md-2">
+                                    <button type="button" class="btn btn-success">Success</button>
+                                </div>
+
+                                <div class="col-lg-10 col-md-10">
+                                <div class="news-title-meta">
+                                    <h1 class="page-title"><a href="#" title="Megan Boyle...">Megan Boyle flourishes at Boston University</a></h1>
+                                    <div class="news-meta">
+                                        <span class="news-meta-date">Jun 12, 2014</span>
+                                        <span class="news-meta-category"><a href="news.html" title="News">News</a></span>
+                                        <span class="news-meta-comments"><a href="#" title="3 comments">3 comments</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="news-body">
+                                    <p>
+                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus<a href="#" class="more-link">...READ MORE</a> 
+                                    </p>
+  
+                                </div>
+                                    <br>
+                                <table class="table table-striped">
+                                <tr>
+                                    <td><strong>Recepción de aportes</strong></td>
+                                    <td><strong>Cierre de aportes</strong></td>
+                                    <td><strong>Foro Skype</strong></td>
+                                    <td><strong>Entrega de memoria</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>25 de junio de 2013</td>
+                                    <td>20 de agosto de 2013</td>
+                                    <td>23 de agosto de 2013</td>
+                                    <td>30 de agosto de 2013</td>
+                                </tr>
+                                </table>
+
                                 </div>
                             
                             </div>
+                            
+                        	<div class="k-article-summary col-lg-12 col-md-12">
+
+                             <div class="col-lg-2 col-md-2">
+                                    <button type="button" class="btn btn-success">Success</button>
+                                </div>
+
+                                <div class="col-lg-10 col-md-10">
+                                
+                                <div class="news-title-meta">
+                                    <h1 class="page-title"><a href="#" title="Strange behaviour...">Strange behaviour of a student from Germany</a></h1>
+                                    <div class="news-meta">
+                                        <span class="news-meta-date">Jun 07, 2014</span>
+                                        <span class="news-meta-category"><a href="news.html" title="News">News</a></span>
+                                        <span class="news-meta-comments"><a href="#" title="3 comments">654 comments</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="news-body">
+                                    <p>
+                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus<a href="#" class="more-link">...READ MORE</a> 
+                                    </p>
+                                    
+                                </div>
+                                     <br>
+                                <table class="table table-striped">
+                                <tr>
+                                    <td><strong>Recepción de aportes</strong></td>
+                                    <td><strong>Cierre de aportes</strong></td>
+                                    <td><strong>Foro Skype</strong></td>
+                                    <td><strong>Entrega de memoria</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>25 de junio de 2013</td>
+                                    <td>20 de agosto de 2013</td>
+                                    <td>23 de agosto de 2013</td>
+                                    <td>30 de agosto de 2013</td>
+                                </tr>
+                                </table>
+                            
+                            </div>
+                             </div>
+                            
+                        	<div class="k-article-summary col-lg-12 col-md-12">
+                            
+                             <div class="col-lg-2 col-md-2">
+                                    <button type="button" class="btn btn-success">Success</button>
+                                </div>
+
+                                <div class="col-lg-10 col-md-10">
+                                
+                                <div class="news-title-meta">
+                                    <h1 class="page-title"><a href="#" title="Newcomers are getting...">Newcomers are getting first "student of the year" awards</a></h1>
+                                    <div class="news-meta">
+                                        <span class="news-meta-date">Jun 02, 2014</span>
+                                        <span class="news-meta-category"><a href="news.html" title="News">News</a></span>
+                                        <span class="news-meta-comments"><a href="#" title="3 comments">27 comments</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="news-body">
+                                    <p>
+                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus<a href="#" class="more-link">...READ MORE</a> 
+                                    </p>
+                                    
+                                </div>
+                                     <br>
+                                <table class="table table-striped">
+                                <tr>
+                                    <td><strong>Recepción de aportes</strong></td>
+                                    <td><strong>Cierre de aportes</strong></td>
+                                    <td><strong>Foro Skype</strong></td>
+                                    <td><strong>Entrega de memoria</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>25 de junio de 2013</td>
+                                    <td>20 de agosto de 2013</td>
+                                    <td>23 de agosto de 2013</td>
+                                    <td>30 de agosto de 2013</td>
+                                </tr>
+                                </table>
+                            
+                            </div>
+                            </div>
                         
-                        </div><!-- row end -->               
+                        </div><!-- row end -->  
+                        
+                        <div class="row gutter"><!-- row -->
+                        
+                        	<div class="col-lg-12">
+                        
+                                <ul class="pagination pull-right"><!-- pagination -->
+                                    <li class="disabled"><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul><!-- pagination end -->
+                            
+                            </div>
+                            
+                        </div><!-- row end -->             
                     
                     </div><!-- inner custom column end -->
                     
                 </div><!-- doc body wrapper end -->
                 
-                <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
 
-                    <div class="col-padded col-shaded"><!-- inner custom column -->
-                    
-                    <h1 class="title-widget">Organizaciones</h1>
-
-                    <ul class="list-org">
-                        <li class="title-widget-org">Nombre ORG</li>
-                        <li class="title-widget-org">Nombre ORG</li>
-                        <li class="title-widget-org">Nombre ORG</li>
-                        <li class="title-widget-org">Nombre ORG</li>
-                    </ul>
-                    
-                    </div><!-- inner custom column end -->
-                    
-                </div><!-- sidebar wrapper end -->
             
             </div><!-- row end -->
         
         </div><!-- container end -->
     
-
+    </div><!-- content wrapper end -->
     
     <div id="k-footer"><!-- footer -->
     

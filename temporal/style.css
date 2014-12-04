@@ -758,3 +758,21 @@ background-color: #95a5a6;
 background-color: #ecf0f1;
 color: #1d1d1d !important;
 }
+.buttonlink{
+	color: white !important;
+}
+.contrapartes h3{
+	text-align: center;
+}
+.contrapartes{
+	margin-top: 20px;
+}
+.ong-title { 
+	font-size: 16px; 
+	line-height: 22px; 
+}
+.ong-meta { 
+	margin-top: 5px; 
+}
+.ong-meta span { display: inline-block; font-size: 14px; font-weight: 400; line-height: 18px; }
+.ong-meta span:not(:last-child) { padding-right: 10px; margin-right: 5px; border-right: 1px solid rgba( 0, 0, 0, 0.05 ); }

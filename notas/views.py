@@ -33,7 +33,6 @@ class HomeView(TemplateView):
         context['book_list'] = "hola!"
         return context
 
-
 def lista_notas(request):
     notas_list = Notas.objects.all().order_by('-fecha','-id')
     paises = Pais.objects.all()

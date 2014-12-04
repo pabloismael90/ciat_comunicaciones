@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Humidtropics, a CGIAR Research Program led by IITA</title>
-    <link rel="shortcut icon" href="img/logo.jpg" />
+    <title>BUNTINGTON Public Schools</title>
+    
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
@@ -14,11 +14,10 @@
     <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css"><!-- Fancybox -->
     <link href="js/audioplayer/audioplayer.css" rel="stylesheet" type="text/css"><!-- Audioplayer -->
     <link href="style.css" rel="stylesheet" type="text/css"><!-- theme styles -->
-    
 
   </head>
   
-  <body role="document">
+  <body role="document" class="single-post">
   
     <!-- device test, don't remove. javascript needed! -->
     <span class="visible-xs"></span><span class="visible-sm"></span><span class="visible-md"></span><span class="visible-lg"></span>
@@ -26,10 +25,9 @@
     
     <div id="k-head" class="container"><!-- container + head wrapper -->
     
-    	<div class="row"><!-- row -->
+        <div class="row"><!-- row -->
         
-        
-        	<div class="col-lg-12">
+            <div class="col-lg-12">
         
                 <div id="k-site-logo" class="pull-left"><!-- site logo -->
                 
@@ -66,7 +64,6 @@
         
                 </nav><!-- main navig end -->
             
-            
             </div>
             
         </div><!-- row end -->
@@ -75,9 +72,9 @@
     
     <div id="k-body"><!-- content wrapper -->
     
-    	<div class="container"><!-- container -->
+        <div class="container"><!-- container -->
         
-        	<div class="row"><!-- row -->
+            <div class="row"><!-- row -->
             
                 <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
                 
@@ -91,11 +88,12 @@
                 
                 </div><!-- top search end -->
             
-            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                <div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
                 
-                	<ol class="breadcrumb">
-                    	<li><a href="index-2.html">Home</a></li>
-                        <li class="active">Lista de Noticias</li>
+                    <ol class="breadcrumb">
+                        <li><a href="index-2.html">Home</a></li>
+                        <li><a href="news.html">Contrapartes</a></li>
+                        <li class="active">Nombre Contraparte</li>
                     </ol>
                     
                 </div><!-- breadcrumbs end -->               
@@ -105,201 +103,107 @@
             <div class="row no-gutter"><!-- row -->
                 
                 <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
-                	
+                    
                     <div class="col-padded"><!-- inner custom column -->
                     
-                    	<div class="row gutter"><!-- row -->
-                        <div class="col-lg-12 col-md-12">
-                            <div class="btn-group paises ">
-                              <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
-                              <button type="button" class="btn btn-default">
-                              Trifinio
-                              </button>
-                              <button type="button" class="btn btn-default">
-                              Nicanorte
-                              </button>
-                              <button type="button" class="btn btn-default">
-                              AH-RD
-                              </button>
-                            </div>
-                            <hr />
-                        </div>
-                        
-                        	<div class="col-lg-12 col-md-12">
-                    
-                            	<h1 class="page-title">Ultimas Noticias</h1><!-- category title -->
-                            
-                                <div class="category-description"><!-- category description -->
-                                    <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium vulputate scelerisque. Nulla in suscipit risus. Nullam pulvinar augue in risus luctus, sed dapibus ipsum mattis.
-                                    </p>
-                                </div>
-                            
-                            </div>
-                        
-                        </div><!-- row end -->
-                        
-                        <div class="row gutter k-equal-height"><!-- row -->
-                        
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">	
-                                    <img src="img/news-1.jpg" alt="Featured image 1" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="news.html" title="Fiestas patrias">Fiestas patrias en Camoapa</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">14 Octubre, 2014</span>
-                                        <span class="comments"><a href="#">3 Comentarios</a></span>
-                                        <span class="ong"><a href="#">Organización</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium vulputate scelerisque. Nulla in suscipit risus... <a href="news.html" title="Read more" class="moretag">Leer más..</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-2.jpg" alt="Featured image 2" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="news.html" title="Megan Boyle flourishes...">El Salvador en Nicaragua</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">14 Octubre, 2014</span>
-                                        <span class="news-meta-comments"><a href="#" title="12 comments">12 Comentarios</a></span>
-                                        <span class="ong"><a href="#">Organización</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Cras lectus diam, semper eget nunc et, ullamcorper faucibus ipsum. Integer id odio venenatis, vestibulum velit quis tempus euismod elit, eu venenatis dolor... <a href="news.html" title="Read more" class="moretag">More</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-3.jpg" alt="Featured image 3" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="news.html" title="Buntington alum Marc...">Panamá en Nicaragua</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">14 Octubre, 2014</span>
-                                        <span class="news-meta-comments"><a href="#" title="3 comments">3 comentario</a></span>
-                                        <span class="ong"><a href="#">Organización</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Nam tempus euismod elit, eu venenatis dolor cursus sed. Nam sit amet ipsum ornare, interdum ipsum congue, fermentum turpis... <a href="news.html" title="Read more" class="moretag">Leer más..</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
-                            
-                                <figure class="news-featured-image">
-                                	<img src="img/news-4.jpg" alt="Featured image 4" class="img-responsive" />
-                                </figure>
-                                
-                                <div class="page-title-meta">
-                                    <h1 class="page-title"><a href="news.html" title="Students have enough time...">Fiestas patrias en Camoapa</a></h1>
-                                    <div class="news-meta">
-                                        <span class="news-meta-date">14 Octubre, 2014</span>
-                                        <span class="news-meta-comments"><a href="#" title="27 comments">27 Comentarios</a></span>
-                                        <span class="ong"><a href="#">Organización</a></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="news-summary">
-                                    <p>
-                                    Ut vitae venenatis dolor. Phasellus volutpat sapien sit amet tellus gravida, nec dignissim elit congue... <a href="news.html" title="Read more" class="moretag">Leer más..</a>
-                                    </p>
-                                </div>
-                            
-                            </div><!-- news mini-wrap end -->
-                            
-
-                        </div><!-- row end -->
-                        
-                        
                         <div class="row gutter"><!-- row -->
                         
-                        	<div class="col-lg-12">
-                        
-                                <ul class="pagination pull-right"><!-- pagination -->
-                                    <li class="disabled"><a href="#">Prev</a></li>
-                                    <li class="active"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">Next</a></li>
-                                </ul><!-- pagination end -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="col-lg-4 col-md-4">
+                                        <figure class="news-featured-image">    
+                                            <img src="http://placehold.it/200x200" alt="Featured image 4" class="" />
+                                        </figure>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="ong-meta">
+                                            <span class=""><strong>Pais</strong></span>
+                                            <span class="btn"><img src="img/bandera/hn.png" alt=""> Honduras </span>
+                                        </div>
+                                        <div class="ong-meta">
+                                            <span class=""><strong>Año de fundación</strong></span>
+                                            <span class="btn">2008</span>
+                                        </div>
+                                        <div class="ong-meta">
+                                            <span class=""><strong>Contacto</strong></span>
+                                            <span class="btn">Ligia del Rosario Briones Valenzuela</span>
+                                        </div>
+                                        <div class="ong-meta">
+                                            <span class=""><strong>Teléfono</strong></span>
+                                            <span class="btn">22785113</span>
+                                        </div>
+                                        <div class="ong-meta">
+                                            <span class=""><strong>Sitio Web</strong></span>
+                                            <span class="btn">http://www.asomupro.webege.com/</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="news-title-meta">
+                                    <h1 class="ong-title">Temas</h1>
+                                    <hr>
+                                </div>
+                                
+                                <div class="news-body">
+                                    <p>
+                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus. Praesent fringilla ligula in orci consectetur pulvinar. Nunc facilisis metus pellentesque, vestibulum libero eget, varius elit. Aliquam sed gravida dui, a imperdiet eros. Cras dignissim libero id feugiat pharetra. Nullam ut bibendum est, sed tincidunt massa. 
+                                    </p>
+                                    
+                                </div>
+
+                                <div class="news-title-meta">
+                                    <h1 class="ong-title">Generalidades</h1>
+                                    <hr>
+                                </div>
+                                
+                                <div class="news-body">
+                                    <p>
+                                    Duis ornare magna sit amet dui eleifend imperdiet. Aliquam at porta elit. Proin lorem lacus, tempus id diam sit amet, porttitor tempor lectus. Praesent id felis sagittis, suscipit ligula sed, condimentum nisi. In non commodo risus. Praesent fringilla ligula in orci consectetur pulvinar. Nunc facilisis metus pellentesque, vestibulum libero eget, varius elit. Aliquam sed gravida dui, a imperdiet eros. Cras dignissim libero id feugiat pharetra. Nullam ut bibendum est, sed tincidunt massa. 
+                                    </p>
+                                    
+                                </div>
+
                             
                             </div>
-                            
-                        </div><!-- row end -->
+                        
+                        </div><!-- row end -->                         
+               
                     
                     </div><!-- inner custom column end -->
                     
                 </div><!-- doc body wrapper end -->
                 
                 <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
-                	
+                    
                     <div class="col-padded col-shaded"><!-- inner custom column -->
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<li class="widget-container widget_nav_menu"><!-- widget -->
+                            <li class="widget-container widget_nav_menu"><!-- widget -->
+                    
                     
                                 <h1 class="title-widget">Noticias mas Descatacas</h1>
                                 
                                 <ul>
-                                	<li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
                                     <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
                                     <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
                                     <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
                                     <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
                                     <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
                                     
                                 </ul>
                     
-							</li>
-                            <br>
-                        	<li class="widget-container widget_up_events"><!-- widget -->
-                    
+                            </li>
+                            
+                             <br>
+                            <li class="widget-container widget_up_events"><!-- widget -->
+                                
                                 <h1 class="title-widget">Próximos Eventos</h1>
                                 
                                 <ul class="list-unstyled">
                                 
-                                    <li class="up-event-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Annual alumni game">Desfile Patrio</a></h1>
-                                        
-                                        <div class="up-event-meta clearfix">
-                                            <div class="up-event-date">Julio 25, 2015</div><div class="up-event-time">9:00 am - 11:00 am</div>
-                                        </div>
-                                        
-                                        <p>
-                                        Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a> 
-                                        </p>
-                                    
-                                    </li>
                                     
                                     <li class="up-event-wrap">
                                 
@@ -332,7 +236,7 @@
                                 </ul>
                             
                             </li>
-                            
+                             
                         </ul><!-- widgets end -->
                     
                     </div><!-- inner custom column end -->
@@ -347,29 +251,29 @@
     
     <div id="k-footer"><!-- footer -->
     
-    	<div class="container"><!-- container -->
+        <div class="container"><!-- container -->
         
-        	<div class="row no-gutter"><!-- row -->
+            <div class="row no-gutter"><!-- row -->
             
-            	<div class="col-lg-4 col-md-4"><!-- widgets column left -->
+                <div class="col-lg-4 col-md-4"><!-- widgets column left -->
             
                     <div class="col-padded col-naked">
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<li class="widget-container widget_nav_menu"><!-- widgets list -->
+                            <li class="widget-container widget_nav_menu"><!-- widgets list -->
                     
                                 <h1 class="title-widget">Useful links</h1>
                                 
                                 <ul>
-                                	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
+                                    <li><a href="#" title="menu item">Placement Exam Schedule</a></li>
                                     <li><a href="#" title="menu item">Superintendent's Hearing Audio</a></li>
                                     <li><a href="#" title="menu item">Budget Central</a></li>
                                     <li><a href="#" title="menu item">Job Opportunities - Application</a></li>
                                     <li><a href="#" title="menu item">College Acceptances as of May 12</a></li>
                                 </ul>
                     
-							</li>
+                            </li>
                             
                         </ul><!-- widgets end -->
                          
@@ -383,32 +287,32 @@
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<li class="widget-container widget_recent_news"><!-- widgets list -->
+                            <li class="widget-container widget_recent_news"><!-- widgets list -->
                     
                                 <h1 class="title-widget">School Contact</h1>
                                 
                                 <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
                                 
-                                	<h2 class="title-median m-contact-subject" itemprop="name">Buntington Public Schools</h2>
+                                    <h2 class="title-median m-contact-subject" itemprop="name">Buntington Public Schools</h2>
                                 
-                                	<div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-                                		<span class="m-contact-street" itemprop="street-address">19 Tower Avenue, Buntington Station</span>
-                                		<span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">New York</span>, <span class="m-contact-region" itemprop="region">NY</span></span>
-                                		<span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">11506</span> <span class="m-contact-country" itemprop="country-name">USA</span></span>
-                                	</div>
+                                    <div class="m-contact-address" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
+                                        <span class="m-contact-street" itemprop="street-address">19 Tower Avenue, Buntington Station</span>
+                                        <span class="m-contact-city-region"><span class="m-contact-city" itemprop="locality">New York</span>, <span class="m-contact-region" itemprop="region">NY</span></span>
+                                        <span class="m-contact-zip-country"><span class="m-contact-zip" itemprop="postal-code">11506</span> <span class="m-contact-country" itemprop="country-name">USA</span></span>
+                                    </div>
                                      
-                                	<div class="m-contact-tel-fax">
-                                    	<span class="m-contact-tel">Tel: <span itemprop="tel">631-551-3678</span></span>
-                                    	<span class="m-contact-fax">Fax: <span itemprop="fax">631-551-3688</span></span>
+                                    <div class="m-contact-tel-fax">
+                                        <span class="m-contact-tel">Tel: <span itemprop="tel">631-551-3678</span></span>
+                                        <span class="m-contact-fax">Fax: <span itemprop="fax">631-551-3688</span></span>
                                     </div>
                                     
                                 </div>
                                 
                                 <div class="social-icons">
                                 
-                                	<ul class="list-unstyled list-inline">
+                                    <ul class="list-unstyled list-inline">
                                     
-                                    	<li><a href="#" title="Contact us"><i class="fa fa-envelope"></i></a></li>
+                                        <li><a href="#" title="Contact us"><i class="fa fa-envelope"></i></a></li>
                                         <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                                         <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                                     
@@ -416,7 +320,7 @@
                                 
                                 </div>
                     
-							</li>
+                            </li>
                             
                         </ul>
                         
@@ -430,12 +334,12 @@
                     
                         <ul class="list-unstyled clear-margins"><!-- widgets -->
                         
-                        	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
+                            <li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
                                 <h1 class="title-widget">Flickr Stream</h1>
                                 
                                 <ul class="k-flickr-photos list-unstyled">
-                                	<li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
+                                    <li><a href="#" title="Flickr photo"><img src="img/flickr-1.jpg" alt="Photo 1" /></a></li>
                                     <li><a href="#" title="Flickr photo"><img src="img/flickr-2.jpg" alt="Photo 2" /></a></li>
                                     <li><a href="#" title="Flickr photo"><img src="img/flickr-3.jpg" alt="Photo 3" /></a></li>
                                     <li><a href="#" title="Flickr photo"><img src="img/flickr-4.jpg" alt="Photo 4" /></a></li>
@@ -445,7 +349,7 @@
                                     <li><a href="#" title="Flickr photo"><img src="img/flickr-8.jpg" alt="Photo 8" /></a></li>
                                 </ul>
                     
-							</li>
+                            </li>
                             
                         </ul> 
                         
@@ -461,13 +365,13 @@
     
     <div id="k-subfooter"><!-- subfooter -->
     
-    	<div class="container"><!-- container -->
+        <div class="container"><!-- container -->
         
-        	<div class="row"><!-- row -->
+            <div class="row"><!-- row -->
             
-            	<div class="col-lg-12">
+                <div class="col-lg-12">
                 
-                	<p class="copy-text text-inverse">
+                    <p class="copy-text text-inverse">
                     &copy; 2015 Buntington Public Schools. All rights reserved.
                     </p>
                 
@@ -490,14 +394,14 @@
     <script src="js/dropdown-menu/dropdown-menu.js"></script>
     
     <!-- Fancybox -->
-	<script src="js/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="js/fancybox/jquery.fancybox.pack.js"></script>
     <script src="js/fancybox/jquery.fancybox-media.js"></script><!-- Fancybox media -->
     
     <!-- Responsive videos -->
     <script src="js/jquery.fitvids.js"></script>
     
     <!-- Audio player -->
-	<script src="js/audioplayer/audioplayer.min.js"></script>
+    <script src="js/audioplayer/audioplayer.min.js"></script>
     
     <!-- Pie charts -->
     <script src="js/jquery.easy-pie-chart.js"></script>
@@ -507,8 +411,6 @@
     
     <!-- Theme -->
     <script src="js/theme.js"></script>
-
-
     
   </body>
 </html>
