@@ -1,9 +1,9 @@
-Django==1.5.10
+Django==1.6.7
 MySQL-python==1.2.5
 Pillow==2.5.2
 South==0.8.4
 django-appconf==0.6
-django-ckeditor==4.0.2
+django-ckeditor==4.4.6
 django-compressor==1.4
 django-tagging==0.3.1
 -e svn+http://django-tagging-autocomplete.googlecode.com/svn/trunk@24#egg=django_tagging_autocomplete-0.3.1-py2.7-dev_r24
