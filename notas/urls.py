@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.views.generic import ListView, DetailView
 from models import Notas
 from .views import HomeView
