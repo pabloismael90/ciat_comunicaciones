@@ -26,7 +26,7 @@ def logout_page(request):
   return HttpResponseRedirect('/')
 
 class HomeView(TemplateView):
-    template_name = "basexterno.html"
+    template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
@@ -35,6 +35,7 @@ class HomeView(TemplateView):
 
 def lista_notas(request):
     notas_list = Notas.objects.all().order_by('-fecha','-id')
+    agenda = Agendas.objects.all().order_by('-inicio','-id')[1:4]
     paises = Pais.objects.all()
 
     paginator = Paginator(notas_list, 4)
@@ -90,8 +91,9 @@ def lista_notas_pais(request,id):
 
 
 def index(request):
-
-    notas = Notas.objects.all().order_by('-fecha','-id')[:2]
+    notasslide = Notas.objects.all().order_by('-fecha','-id')[1:4]
+    notascol1 = Notas.objects.all().order_by('-fecha','-id')[4:7]
+    notascol2 = Notas.objects.all().order_by('-fecha','-id')[7:10]
     evento = Agendas.objects.filter(publico=True).order_by('-inicio')[:3]
     paises = Pais.objects.all()
     contrapartes = Contraparte.objects.filter(tipo=1)

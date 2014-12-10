@@ -1,78 +1,195 @@
-{% extends "baseinterna.html" %}
+{% extends "basexterno.html" %}
 {% block extra_js %}
-    <script type="text/javascript">
-        $(document).ready(function(){
-			  // para resaltar menu
-  			  $('#noticias-menu').addClass('active');
-        });
-    </script>
+
 {% endblock %}
-{%block titulo%}Noticias{%endblock%}
-{%block descriptitulo%}Últimas noticias destacadas de las asociadas y organizaciones aliadas de AMARC-Nicaragua{%endblock%}
+
+
+
 {% block contenido %}
-<style type="text/css">
-	.wraap{margin:0 auto 0 auto; width:390px;}
-</style>
-<div class="row">
-	<div class="encabezado">
-	  <div class="container">
-		    <div class="row">
-			    <div class="span5">
-			    	<div class="encabezado-title">
-			      		NOTAS {%if pais_selecto%}: <b>{{pais_selecto.nombre}}</b>{%endif%}
-			  		</div>
-			    </div>
-	        </div>
-	  </div>
-	</div>
-</div>
-<div class="row body-content">
-	<div class="container">
-		{% if request.GET.shva == 'erase' %}
-            <div class="alert fade in">
-                Se ha eliminado la nota de forma permanente
-                <a class="close" href="#" data-dismiss="alert">x</a>
-            </div>
-        {% endif %}
-		{% for nota in notas %}
-			<div class="row">
-				<div class="span3">
-				{%if nota.fotos.all.count > 0%}
-				 {%for thumb in nota.fotos.all|slice:"1"%} 
-	                   <a href="/notas/{{nota.id}}"><img  src="{{thumb.foto.url_220x160}}"><a/>
-	             {%endfor%}
-	            {%else%}
-	           		   <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png"><a/>
-	            {%endif%}
-				</div>
-				<div class="span9">
-						<div class="extrainfo">{{nota.fecha}}  |  {{nota.user.userprofile.contraparte.nombre}}</div>
-						<a href="{{nota.get_absolute_url}}" class="titulo-medio">{{nota.titulo}}</a><br>
-						{{nota.contenido|safe|truncatewords_html:50|striptags}} 
-						<a href="/notas/{{nota.id}}" class="boton-blue-leer">Leer más</a>
-				</div>
-			</div>
-			<hr>
-		{% endfor %}
-	    <div class="pagination wraap">
-	    	<ul>
-	        {% if notas.has_previous %}
-	        <li>
-	          <a href="{% url notas_list %}?page={{ notas.previous_page_number }}">
-	            ← Anterior</a>
-	        
-	        {% endif %}
+    <div id="k-body"><!-- content wrapper -->
+    
+    	<div class="container"><!-- container -->
+        
+        	<div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    <form action="#" id="top-searchform" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                        </div>
+                    </form>
+                    
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                	<ol class="breadcrumb">
+                    	<li><a href="index-2.html">Home</a></li>
+                        <li class="active">Lista de Noticias</li>
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->               
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter"><!-- row -->
+                
+                <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
+                	
+                    <div class="col-padded"><!-- inner custom column -->
+                    
+                    	<div class="row gutter"><!-- row -->
+                        <div class="col-lg-12 col-md-12">
+                            <div class="btn-group paises ">
+                              <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
+                              <button type="button" class="btn btn-default">
+                              Trifinio
+                              </button>
+                              <button type="button" class="btn btn-default">
+                              Nicanorte
+                              </button>
+                              <button type="button" class="btn btn-default">
+                              AH-RD
+                              </button>
+                            </div>
+                            <hr />
+                        </div>
+                        
+                        	<div class="col-lg-12 col-md-12">
+                    
+                            	<h1 class="page-title">Ultimas Noticias</h1><!-- category title -->
+                            
+                                <div class="category-description"><!-- category description -->
+                                    <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium vulputate scelerisque. Nulla in suscipit risus. Nullam pulvinar augue in risus luctus, sed dapibus ipsum mattis.
+                                    </p>
+                                </div>
+                            
+                            </div>
+                        
+                        </div><!-- row end -->
+                        
+                        <div class="row gutter k-equal-height"><!-- row -->
+                        
 
-	        	<span class="active">
-            		Pagina {{ notas.number }} de {{ notas.paginator.num_pages }}.
-        		</span>
 
-	        {% if notas.has_next %}
-	         <a href="{% url notas_list %}?page={{ notas.next_page_number }}">
-	         Siguiente →</a> </li>
-	         {% endif %}
-	    	</ul>
-	    </div>
-	</div>
-</div>
+                        {% for nota in notas  %}
+                        	
+                        
+                            <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
+                            
+                                <figure class="news-featured-image">	
+                                    <img src="/files/temporal/img/news-1.jpg" alt="Featured image 1" class="img-responsive" />
+                                </figure>
+                                
+                                <div class="page-title-meta">
+                                    <h1 class="page-title"><a href="news.html" title="Fiestas patrias">{{nota.titulo}}</a></h1>
+                                    <div class="news-meta">
+                                        <span class="news-meta-date">{{nota.fecha|date:"M t, Y"}}</span>
+                                        
+                                        <span class="ong"><a href="#">{{nota.user}}</a></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="news-summary">
+                                    <p>
+                                    {{nota.contenido|safe|truncatewords_html:10}}
+                                    <a href="/notas/{{nota.id}}" title="Read more" class="moretag">Leer más..</a>
+                                    </p>
+                                </div>
+                            
+                            </div><!-- news mini-wrap end -->
+                            
+                            {% endfor %}
+                            
+
+                        </div><!-- row end -->
+                        
+                        
+                        <div class="row gutter"><!-- row -->
+                        
+                        	<div class="col-lg-12">
+                        
+                                <ul class="pagination pull-right"><!-- pagination -->
+                                    <li class="disabled"><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul><!-- pagination end -->
+                            
+                            </div>
+                            
+                        </div><!-- row end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- doc body wrapper end -->
+                
+                <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
+                	
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                        	<li class="widget-container widget_nav_menu"><!-- widget -->
+                    
+                                <h1 class="title-widget">Noticias mas Descatacas</h1>
+                                
+                                <ul>
+                                	<li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    
+                                </ul>
+                    
+							</li>
+                            <br>
+                        	<li class="widget-container widget_up_events"><!-- widget -->
+                    
+                                <h1 class="title-widget">Próximos Eventos</h1>
+                                
+                                <ul class="list-unstyled">
+                                {% for evento in  agenda %}
+                                	
+                                
+                                    <li class="up-event-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Annual alumni game">{{evento.evento}}</a></h1>
+                                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">Julio 25, 2015</div><div class="up-event-time">9:00 am - 11:00 am</div>
+                                        </div>
+                                        
+                                        <p>
+                                        Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a> 
+                                        </p>
+                                    
+                                    </li>
+                                {% endfor %}    
+                                    
+                                
+                                </ul>
+                            
+                            </li>
+                            
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- sidebar wrapper end -->
+            
+            </div><!-- row end -->
+        
+        </div><!-- container end -->
+    
+    </div><!-- content wrapper end -->
 {% endblock %}

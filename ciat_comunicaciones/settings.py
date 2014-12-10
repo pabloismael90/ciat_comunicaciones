@@ -185,7 +185,7 @@ LOGGING = {
 
 AUTH_PROFILE_MODULE = 'contrapartes.UserProfile'
 LOGIN_REDIRECT_URL = '/foros/perfil'
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': [

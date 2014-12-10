@@ -1,161 +1,308 @@
-{% extends "base.html"%}
+{% extends "basexterno.html"%}
 {% block extra_js%}
-<script type="text/javascript" src="/files/js/jquery.bxSlider.min.js"></script>
-<script type="text/javascript" src="/files/js/FeedEk.js"></script>
-<link href="/files/css/FeedEk.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript">
-  $(document).ready(function(){
-    var slider = $('#slider1').bxSlider({
-      controls: true,
-      auto:true,
-      pause:8000,
-      speed:1500,
-      prevImage:'/files/img/prev.png',
-      nextImage:'/files/img/next.png',
-    });
 
-    // para resaltar menu
-    $('#inicio-menu').addClass('active');
-
-    // altura de linea de eventos basado en tamaño de div
-    altura_evento = $(".new-evento-index").height();
-    if (altura_evento < 300) {
-      $(".index-mapa").css("margin-bottom","20px");
-      $(".new-evento-index").height(altura_evento+20);
-    }
-    if (altura_evento < 230) {
-      $(".index-mapa").css("margin-bottom","20px");
-      $(".new-evento-index").height(altura_evento+40);
-    }
-    $('#divRss').FeedEk({
-        FeedUrl: 'http://www2.amarc.org/?q=es/rss.xml',
-        MaxCount: 2,
-        ShowDesc: true,
-        ShowPubDate: true,
-        DescCharacterLimit: 140
-    });
-});
-
-
-</script>
-<script>
-  $(function() { 
-    // Setup the player to autoplay the next track
-    var a = audiojs.createAll({
-      trackEnded: function() {
-        var next = $('ol li.playing').next();
-        if (!next.length) next = $('ol li').first();
-        next.addClass('playing').siblings().removeClass('playing');
-        audio.load($('a', next).attr('data-src'));
-        audio.play();
-      }
-    });
-    
-    // Load in the first track
-    var audio = a[0];
-        first = $('ol a').attr('data-src');
-    $('ol li').first().addClass('playing');
-    audio.load(first);
-
-    // Load in a track on click
-    $('ol li').click(function(e) {
-      e.preventDefault();
-      $(this).addClass('playing').siblings().removeClass('playing');
-      audio.load($('a', this).attr('data-src'));
-      audio.play();
-    });
-    
-  });
-</script>
 {%endblock%}
 {%block contenido%}
+    <div id="k-body"><!-- content wrapper -->
+    
+      <div class="container"><!-- container -->
+        
+          <div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    {% include "buscador.html" %}
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+              <div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                  <ol class="breadcrumb">
+                      <li><a href="#">CIAT</a></li>
+                        <li class="active">Inicio</li>
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter fullwidth"><!-- row -->
+            
+                <div class="col-lg-12 clearfix"><!-- featured posts slider -->
+                
+                    <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
+                    
+                        <ol class="carousel-indicators"><!-- Indicators -->
+                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-featured" data-slide-to="1"></li>
+                            <li data-target="#carousel-featured" data-slide-to="2"></li>
 
-  <div class="row" id="actualidad">
-    <div class="encabezado">
-      <div class="container">
-        <div class="row">
-        <div class="span12 encabezado-title">
-          ACTUALIDAD
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="container" style="padding-top:30px">
-      <div class="row">
-          <div class="span7">
-              <div>
-                     {% for nota in notas%}
-                        <div class="cuadronota">
-                          {% if nota.fotos.all.count > 0%}
-                             {%for thumb in nota.fotos.all|slice:"1"%}
-                                  <a href="/notas/{{nota.id}}"> 
-                                   <img class="imagen-noticia-index" width=245 src="{{thumb.foto.url_220x160}}">
-                                  </a>
-                             {%endfor%}
-                          {% else %}
-                            <a href="/notas/{{nota.id}}"> 
-                             <img class="imagen-noticia-index" width=245 src="/files/img/nofoto.png">
-                             </a>
-                         {%endif%}
-                         <div class="titulo-noticia-index">
-                           {{nota.titulo}}
-                         </div>
-                         <div class="detalle-noticia-index">
-                           {{nota.contenido|safe|truncatewords_html:40|striptags}}
-                           <center>
-                           <a href="/notas/{{nota.id}}" class="boton-blue">Leer más</a>
-                           </center>
-                         </div>
-                         
-                       </div>
-                    {% endfor %}   
-                </div> 
-          </div>
+                        </ol><!-- Indicators end -->
+                    
+                        <div class="carousel-inner"><!-- Wrapper for slides -->
+                       {% for nota in notasslide %}
+                            <div class="item {% if forloop.counter == 1 %} active {% endif %}">
+                                <img src="/files/temporal/img/foto4.JPG" alt="" />
+                                <div class="k-carousel-caption {% if forloop.counter == 2 %}pos-1-3-left scheme-dark{% endif %}pos-2-3-right scheme-dark">
+                                    <div class="caption-content">
+                                        <h3 class="caption-title">{{nota.titulo}}</h3>
+                                        <p>
+                                            {{nota.contenido|safe|truncatewords_html:10}}
+                                        </p>
+                                        <p>
+                                            <a href="/notas/{{nota.id}}" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        {%endfor%}   
 
-          <div class="span5">
-            <div class="titlerss">Últimos audios</div>
-              <div class="widget-audio">
-                <audio preload></audio>
-                  <ol>
-                      {% for obj in audio %}
-                        <li><a href="#" data-src="/uploads/{{obj.audio}}">{{obj.nombre_audio}}</a></li>
-                      {% empty %}
-                        <li><a href="#" data-src="http://s3.amazonaws.com/audiojs/01-dead-wrong-intro.mp3">dead wrong intro</a></li>
-                      {% endfor %}
-                        <br>
-                  </ol>
-              </div><br>
-              <div class="titlerss">Noticias de AMARC Internacional</div>
-              <div class="rssDiv">
-                <div id="divRss"></div>
-              </div>
-          </div>
+                            
+                            
+                        </div><!-- Wrapper for slides end -->
+                    
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                        <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                        <!-- Controls end -->
+                        
+                    </div><!-- featured posts slider wrapper end -->
+                        
+                </div><!-- featured posts slider end -->
+                
+            </div><!-- row end -->
 
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="encabezado">
-      <div class="container">
-        <div class="row">
-        <div class="span12 pink encabezado-title">
-          RADIOS ASOCIADAS
-        </div>
-      </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <br>
-            <div class="span9 radios-index">
-                {%for c in contrapartes%}
-                    <a href="{{c.get_absolute_url}}">{{c.nombre}}<br><span class="frecuencia">{{c.frecuecia}}</span></a></li>  
-                {%endfor%}       
+            <br>
+            
+            <div class="row">
+                <div class="col-lg-7 col-md-7">
+                    <div class="btn-group paises ">
+                        <button type="button" class="btn txt-black" disabled="disabled">Filtrar por:</button>
+                        
+                        <a type="button" class="btn btn-default" href="">Trifinio</a>
+                        <a type="button" class="btn btn-default" href="">Nicanorte</a>
+                        <a type="button" class="btn btn-default" href="">AH-RD</a>
+                    </div>
+                </div>
             </div>
-            <div class="span3">
-              <img style="margin-bottom:10px;" src="/files/img/antena.jpg">
-            </div>
+
+            
+            <div class="row no-gutter"><!-- row -->
+
+
+                <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->
+                    
+                  <div class="col-padded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                            <li class="widget-container widget_recent_news"><!-- widgets list -->
+                    
+                                <h1 class="title-widget">Ultimas Noticias</h1>
+                                
+                                <ul class="list-unstyled">
+
+                                {% for nota in notascol1 %}
+                                
+                                    <li class="recent-news-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="">{{nota.titulo}}</a></h1>
+                                        
+                                        <div class="recent-news-meta">
+                                            <div class="recent-news-date">{{nota.fecha|date:"M t, Y"}}</div>
+                                        </div>
+                                        
+                                        <div class="recent-news-content clearfix">
+                                            <figure class="recent-news-thumb">
+                                                <a href="#" title="Fiestas patrias en Camoapa"><img src="/files/temporal/img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
+                                            </figure>
+                                            <div class="recent-news-text">
+                                                <p>
+                                                {{nota.contenido|safe|truncatewords_html:10}}
+                                                <a href="/notas/{{nota.id}}" class="moretag" title="">Leer mas..</a> 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </li>
+
+                                    {%endfor%}
+                                
+                                </ul>
+                                
+                            </li><!-- widgets list end -->
+                        
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+
+                    
+                </div><!-- last new wrapper end -->
+
+                
+                <div class="col-lg-4 col-md-4"><!-- recent news wrapper -->
+                  
+                    <div class="col-padded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                          <li class="widget-container widget_recent_news"><!-- widgets list -->
+                    
+                                <br><br>
+                                
+                                <ul class="list-unstyled">
+
+                                    {% for nota in notascol2 %}
+
+                                    <li class="recent-news-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="">{{nota.titulo}}</a></h1>
+                                        
+                                        <div class="recent-news-meta">
+                                            <div class="recent-news-date">{{nota.fecha|date:"M t, Y"}}</div>
+                                        </div>
+                                        
+                                        <div class="recent-news-content clearfix">
+                                            <figure class="recent-news-thumb">
+                                                <a href="#" title="Fiestas patrias en Camoapa"><img src="/files/temporal/img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
+                                            </figure>
+                                            <div class="recent-news-text">
+                                                <p>
+                                                {{nota.contenido|safe|truncatewords_html:10}}
+                                                <a href="/notas/{{nota.id}}" class="moretag" title="Leer mas">Leer mas..</a> 
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    </li>
+                                    {%endfor%}
+                                
+                                </ul>
+                                
+                            </li><!-- widgets list end -->
+                        
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- recent news wrapper end -->
+                
+                <div class="col-lg-4 col-md-4"><!-- misc wrapper -->
+                  
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                          <li class="widget-container"><!-- widget -->
+                            
+                              <h1 class="title-widget">Ultimo Video</h1>
+
+                                <div class="embed-responsive embed-responsive-16by9">
+                                  <iframe class="embed-responsive-item center-block" src="https://www.youtube.com/embed/vF_p3bsneuI?rel=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+
+                                
+                            </li><!-- widget end -->
+                            <br>
+                            <li class="widget-container"><!-- widget -->
+                                <h1 class="title-widget">Ultimo Audio</h1>
+
+                                <div class="audio">
+                                    <audio class="center-block" width="100%" src="/files/temporal/audio/radiohead.mp3" type="audio/mp3" controls="controls">    
+                                    </audio>
+                                </div>
+                            </li>
+                            <br>
+                            <li class="widget-container"><!-- widget -->
+                            
+                                <h1 class="title-widget">Ultimo Documentos</h1>
+
+                              <a href="#" class="custom-button cb-green" title="How to apply?">
+                                  <i class="custom-button-icon fa fa-file"></i>
+                                    <span class="custom-button-wrap">
+                                      <span class="custom-button-title">CIAT</span>
+                                        <span class="custom-button-tagline">El Centro Internacional de Agricultura Tropical (CIAT)</span>
+                                        <i class="custom-button-tagline fa fa-cloud-download"> Descargar</i>
+                                    </span>
+                                    <em></em>
+                                </a>
+                                
+                              <a href="#" class="custom-button cb-gray" title="Campus tour">
+                                  <i class="custom-button-icon fa  fa-file"></i>
+                                    <span class="custom-button-wrap">
+                                      <span class="custom-button-title">Penatibus velit.</span>
+                                        <span class="custom-button-tagline">Nec porta phasellus dis urna integer, nisi mid, scelerisque.</span>
+                                        <i class="custom-button-tagline fa fa-cloud-download"> Descargar</i>
+                                    </span>
+                                    <em></em>
+                                </a>
+                                
+                            
+                            </li><!-- widget end -->
+                            
+                            
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- misc wrapper end -->
+            
+            </div><!-- row end -->
+        
+        </div><!-- container end -->
+    
+    </div><!-- content wrapper end -->
+
+    <div class="sliderorg">
+      <div class="slide">
+      <img src="http://placehold.it/300x150&text=FooBar1">
+      <h3>SIMAS</h3>
+      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
+      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
       </div>
+
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2">
+      <h3>AMARC</h3>
+      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
+      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
+      </div>
+
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3">
+      <h3>SIGLAS</h3>
+      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
+      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
+      </div>
+
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar4">
+       <h3>SIGLAS</h3>
+      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
+      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
+      </div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar5">
+        <h3>SIGLAS</h3>
+      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
+      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
+      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
+      </div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar6"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar7"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar8"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar9"></div>
+      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar10"></div>
     </div>
-  </div>
 {%endblock%}

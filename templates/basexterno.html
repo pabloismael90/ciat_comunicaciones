@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Humidtropics, a CGIAR Research Program led by IITA</title>
-    <link rel="shortcut icon" href="img/logo.jpg" />
+
+    <title>{%block title%}Humidtropics Comunicaciones{%endblock%}</title>
+
+    <link rel="shortcut icon" href="/files/temporal/img/logo.jpg" />
     <!-- Styles -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,700,800" rel="stylesheet" type="text/css"><!-- Google web fonts -->
     <link href="/files/temporal/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"><!-- font-awesome -->
@@ -22,10 +24,8 @@
   
   <body role="document">
   
-    <!-- device test, don't remove. javascript needed! -->
-    <span class="visible-xs"></span><span class="visible-sm"></span><span class="visible-md"></span><span class="visible-lg"></span>
-    <!-- device test end -->
-    
+
+{% block header %}
     <div id="k-head" class="container"><!-- container + head wrapper -->
     
     	<div class="row"><!-- row -->
@@ -48,20 +48,20 @@
         
                     <ul id="drop-down-left" class="k-dropdown-menu">
                         <li>
-                            <a href="listnews.html" title="Nuevas Noticias">Noticias</a>
+                            <a href="/notas" title="Nuevas Noticias">Noticias</a>
                         </li>
                         <li>
-                            <a href="events.html" title="Proximos Eventos">Eventos</a>
+                            <a href="/agendas/eventos" title="Proximos Eventos">Eventos</a>
                         </li>
                         <li>
-                            <a href="gallery-single.html" title="Organizaciones Alidas">Contrapartes</a>
+                            <a href="/contrapartes" title="Organizaciones Alidas">Contrapartes</a>
                         </li>
 
                         <li>
                             <a href="about-us.html" title="Mision y Vision">Acerca de</a>
                         </li>
                         <li>
-                            <a href="#" class="Pages Collection" title="Entra">Inicio de Sesion</a>
+                            <a href="/accounts/login" class="" title="Entra">Inicio de Sesion</a>
                         </li>
                     </ul>
         
@@ -72,410 +72,12 @@
         </div><!-- row end -->
     
     </div><!-- container + head wrapper end -->
-    
-    <div id="k-body"><!-- content wrapper -->
-    
-    	<div class="container"><!-- container -->
-        
-        	<div class="row"><!-- row -->
-            
-                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
-                
-                    <form action="#" id="top-searchform" method="get" role="search">
-                        <div class="input-group">
-                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Escriba la palabra clave (s) a continuación, pulse Enter en el teclado" />
-                        </div>
-                    </form>
-                    
-                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
-                
-                </div><!-- top search end -->
-            
-            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
-                
-                	<ol class="breadcrumb">
-                    	<li><a href="#">CIAT</a></li>
-                        <li class="active">Inicio</li>
-                    </ol>
-                    
-                </div><!-- breadcrumbs end -->
-                
-            </div><!-- row end -->
-            
-            <div class="row no-gutter fullwidth"><!-- row -->
-            
-                <div class="col-lg-12 clearfix"><!-- featured posts slider -->
-                
-                    <div id="carousel-featured" class="carousel slide" data-interval="4000" data-ride="carousel"><!-- featured posts slider wrapper; auto-slide -->
-                    
-                        <ol class="carousel-indicators"><!-- Indicators -->
-                            <li data-target="#carousel-featured" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-featured" data-slide-to="1"></li>
-                            <li data-target="#carousel-featured" data-slide-to="2"></li>
+{% endblock %}
 
-                        </ol><!-- Indicators end -->
-                    
-                        <div class="carousel-inner"><!-- Wrapper for slides -->
-                        
-                            <div class="item active">
-                                <img src="/files/temporal/img/foto4.JPG" alt="Image slide 3" />
-                                <div class="k-carousel-caption pos-1-3-right scheme-dark">
-                                	<div class="caption-content">
-                                        <h3 class="caption-title">Fiestas patrias en Camoapa</h3>
-                                        <p>
-                                        	El reportaje aborda el tema de las fiestas patrias celebradas en el mes de septiembre...
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="item">
-                                <img src="/files/temporal/img/foto2.JPG" alt="Image slide 2" />
-                                <div class="k-carousel-caption pos-1-3-left scheme-light">
-                                	<div class="caption-content">
-                                        <h3 class="caption-title">El Salvador en Nicaragua</h3>
-                                        <p>
-                                        	Desde El Salvador hemos sido visitados por Rosy Quintanilla este 25 de agosto de 2014, ella es la...
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="item">
-                                <img src="/files/temporal/img/foto3.JPG" alt="Image slide 1" />
-                                <div class="k-carousel-caption pos-2-3-right scheme-dark">
-                                	<div class="caption-content">
-                                        <h3 class="caption-title">Panamá en Nicaragua</h3>
-                                        <p>
-                                        	Niñas y niños comunicadores de Radio Chavala recibieron la visita del Representante de la Oficina...
-                                        </p>
-                                        <p>
-                                        	<a href="#" class="btn btn-sm btn-danger" title="Button">READ MORE</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div><!-- Wrapper for slides end -->
-                    
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-featured" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                        <a class="right carousel-control" href="#carousel-featured" data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                        <!-- Controls end -->
-                        
-                    </div><!-- featured posts slider wrapper end -->
-                        
-                </div><!-- featured posts slider end -->
-                
-            </div><!-- row end -->
+{%block contenido%}
+{% endblock %}
 
-            <br>
-            
-            <div class="row">
-                <div class="col-lg-7 col-md-7">
-                    <div class="btn-group paises ">
-                        <button type="button" class="btn txt-black" disabled="disabled">Filtrar por:</button>
-                        
-                        <a type="button" class="btn btn-default" href="">Trifinio</a>
-                        <a type="button" class="btn btn-default" href="">Nicanorte</a>
-                        <a type="button" class="btn btn-default" href="">AH-RD</a>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="row no-gutter"><!-- row -->
-
-
-                <div class="col-lg-4 col-md-4"><!-- upcoming events wrapper -->
-                    
-                	<div class="col-padded"><!-- inner custom column -->
-                    
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-                        
-                            <li class="widget-container widget_recent_news"><!-- widgets list -->
-                    
-                                <h1 class="title-widget">Ultimas Noticias</h1>
-                                
-                                <ul class="list-unstyled">
-                                
-                                    <li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Fiestas patrias en Camoapa">Fiestas patrias en Camoapa</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 12, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Fiestas patrias en Camoapa"><img src="/files/temporal/img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                El reportaje aborda el tema de las fiestas patrias celebradas en el mes de...<a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-                                    <li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="El Salvador en Nicaragua">El Salvador en Nicaragua</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 10, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="El Salvador en Nicaragua"><img src="/files/temporal/img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                Desde El Salvador hemos sido visitados por Rosy Quintanilla este 25 de agosto...<a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-                                    <li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Panamá en Nicaragua">Panamá en Nicaragua</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 05, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Panamá en Nicaragua"><img src="/files/temporal/img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                Niñas y niños comunicadores de Radio Chavala recibieron la visita del... <a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                
-                                </ul>
-                                
-                            </li><!-- widgets list end -->
-                        
-                        </ul><!-- widgets end -->
-                    
-                    </div><!-- inner custom column end -->
-
-                    
-                </div><!-- upcoming events wrapper end -->
-                
-                <div class="col-lg-4 col-md-4"><!-- recent news wrapper -->
-                	
-                    <div class="col-padded"><!-- inner custom column -->
-                    
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-                        
-                        	<li class="widget-container widget_recent_news"><!-- widgets list -->
-                    
-                                <br><br>
-                                
-                                <ul class="list-unstyled">
-                                
-									<li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Fiestas patrias en Camoapa">Fiestas patrias en Camoapa</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 12, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Fiestas patrias en Camoapa"><img src="/files/temporal/img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                El reportaje aborda el tema de las fiestas patrias celebradas en el mes de...<a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="El Salvador en Nicaragua">El Salvador en Nicaragua</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 10, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="El Salvador en Nicaragua"><img src="/files/temporal/img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                Desde El Salvador hemos sido visitados por Rosy Quintanilla este 25 de agosto...<a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                    
-									<li class="recent-news-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Panamá en Nicaragua">Panamá en Nicaragua</a></h1>
-                                        
-                                        <div class="recent-news-meta">
-                                            <div class="recent-news-date">Jun 05, 2014</div>
-                                        </div>
-                                        
-                                        <div class="recent-news-content clearfix">
-                                            <figure class="recent-news-thumb">
-                                                <a href="#" title="Panamá en Nicaragua"><img src="/files/temporal/img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" /></a>
-                                            </figure>
-                                            <div class="recent-news-text">
-                                                <p>
-                                                Niñas y niños comunicadores de Radio Chavala recibieron la visita del... <a href="#" class="moretag" title="Leer mas">Leer mas..</a> 
-                                                </p>
-                                            </div>
-                                        </div>
-                                    
-                                    </li>
-                                
-                                </ul>
-                                
-                            </li><!-- widgets list end -->
-                        
-                        </ul><!-- widgets end -->
-                    
-                    </div><!-- inner custom column end -->
-                    
-                </div><!-- recent news wrapper end -->
-                
-                <div class="col-lg-4 col-md-4"><!-- misc wrapper -->
-                	
-                    <div class="col-padded col-shaded"><!-- inner custom column -->
-                    
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-                        
-                        	<li class="widget-container"><!-- widget -->
-                            
-                            	<h1 class="title-widget">Ultimo Video</h1>
-
-                                <div class="embed-responsive embed-responsive-16by9">
-                                  <iframe class="embed-responsive-item center-block" src="https://www.youtube.com/embed/vF_p3bsneuI?rel=0" frameborder="0" allowfullscreen></iframe>
-                                </div>
-
-                                
-                            </li><!-- widget end -->
-                            <br>
-                            <li class="widget-container"><!-- widget -->
-                                <h1 class="title-widget">Ultimo Audio</h1>
-
-                                <div class="audio">
-                                    <audio class="center-block" width="100%" src="/files/temporal/audio/radiohead.mp3" type="audio/mp3" controls="controls">    
-                                    </audio>
-                                </div>
-                            </li>
-                            <br>
-                            <li class="widget-container"><!-- widget -->
-                            
-                                <h1 class="title-widget">Ultimo Documentos</h1>
-
-                            	<a href="#" class="custom-button cb-green" title="How to apply?">
-                                	<i class="custom-button-icon fa fa-file"></i>
-                                    <span class="custom-button-wrap">
-                                    	<span class="custom-button-title">CIAT</span>
-                                        <span class="custom-button-tagline">El Centro Internacional de Agricultura Tropical (CIAT)</span>
-                                        <i class="custom-button-tagline fa fa-cloud-download"> Descargar</i>
-                                    </span>
-                                    <em></em>
-                                </a>
-                                
-                            	<a href="#" class="custom-button cb-gray" title="Campus tour">
-                                	<i class="custom-button-icon fa  fa-file"></i>
-                                    <span class="custom-button-wrap">
-                                    	<span class="custom-button-title">Penatibus velit.</span>
-                                        <span class="custom-button-tagline">Nec porta phasellus dis urna integer, nisi mid, scelerisque.</span>
-                                        <i class="custom-button-tagline fa fa-cloud-download"> Descargar</i>
-                                    </span>
-                                    <em></em>
-                                </a>
-                                
-                            
-                            </li><!-- widget end -->
-                            
-                            
-                        </ul><!-- widgets end -->
-                    
-                    </div><!-- inner custom column end -->
-                    
-                </div><!-- misc wrapper end -->
-            
-            </div><!-- row end -->
-        
-        </div><!-- container end -->
-    
-    </div><!-- content wrapper end -->
-
-    <div class="sliderorg">
-      <div class="slide">
-      <img src="http://placehold.it/300x150&text=FooBar1">
-      <h3>SIMAS</h3>
-      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
-      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
-      </div>
-
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2">
-      <h3>AMARC</h3>
-      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
-      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
-      </div>
-
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3">
-      <h3>SIGLAS</h3>
-      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
-      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
-      </div>
-
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar4">
-       <h3>SIGLAS</h3>
-      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
-      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
-      </div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar5">
-        <h3>SIGLAS</h3>
-      <li><a href="#"><i class="fa fa-globe fa-lg"></a></i></li>
-      <li> <a href=""><i class="fa fa-info-circle fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-envelope fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa fa-file-o fa-lg"></i></a></li>
-      <li> <a href=""><i class="fa fa-calendar fa-lg"></i></a></li>
-      </div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar6"></div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar7"></div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar8"></div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar9"></div>
-      <div class="slide"><img src="http://placehold.it/300x150&text=FooBar10"></div>
-    </div>
-
+{%block footer%}
     <div id="k-footer"><!-- footer -->
     
     	<div class="container"><!-- container -->
@@ -609,7 +211,7 @@
         </div><!-- container end -->
     
     </div><!-- subfooter end -->
-
+{% endblock %}
     <!-- jQuery -->
     <script src="/files/temporal/jQuery/jquery-2.1.1.min.js"></script>
     <script src="/files/temporal/jQuery/jquery-migrate-1.2.1.min.js"></script>
