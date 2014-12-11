@@ -322,7 +322,7 @@ li.widget-container:not(:first-child) { margin-top: 10px; }
 .news-no-summary .recent-news-date { padding: 0; margin: 0 0 10px; border: none; }
 .news-no-summary .recent-news-thumb img { width: 70px; }
 .news-no-summary .recent-news-text { margin-left: 90px; }
-.news-mini-wrap { margin-top: 40px; }
+
 .news-mini-wrap .page-title { font-size: 18px; line-height: 22px; }
 .news-featured-image { margin-bottom: 25px; border-bottom: 10px solid rgba( 0, 0, 0, 0.05 ); }
 .news-mini-wrap .news-featured-image { margin-bottom: 15px; }

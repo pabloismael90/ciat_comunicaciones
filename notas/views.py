@@ -53,6 +53,7 @@ def lista_notas(request):
 
 def detalle_notas(request, id):
     nota = get_object_or_404(Notas, id=id)
+    agenda = Agendas.objects.all().order_by('-inicio','-id')[1:4]
 
     if request.method == 'POST':
         form = ComentarioForm(request.POST)

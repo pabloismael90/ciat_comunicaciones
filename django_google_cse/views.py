@@ -1,4 +1,4 @@
-from django.views.generic.simple import direct_to_template
+from django.shortcuts import render
 from django.conf import settings
 
 def search(request):
@@ -7,7 +7,7 @@ def search(request):
 
     q = request.GET.get('q', '')
 
-    return direct_to_template(
+    return render(
                 request, 
                 TEMPLATE, 
                 {'q': q, 'CX_CODE': CX_CODE}

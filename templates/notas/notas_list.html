@@ -62,12 +62,6 @@
                     
                             	<h1 class="page-title">Ultimas Noticias</h1><!-- category title -->
                             
-                                <div class="category-description"><!-- category description -->
-                                    <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In pretium vulputate scelerisque. Nulla in suscipit risus. Nullam pulvinar augue in risus luctus, sed dapibus ipsum mattis.
-                                    </p>
-                                </div>
-                            
                             </div>
                         
                         </div><!-- row end -->
@@ -90,7 +84,7 @@
                                     <div class="news-meta">
                                         <span class="news-meta-date">{{nota.fecha|date:"M t, Y"}}</span>
                                         
-                                        <span class="ong"><a href="#">{{nota.user}}</a></span>
+                                        <span class="ong">{{nota.user.first_name}} {{nota.user.last_name}}</span>
                                     </div>
                                 </div>
                                 
@@ -135,53 +129,7 @@
                 	
                     <div class="col-padded col-shaded"><!-- inner custom column -->
                     
-                        <ul class="list-unstyled clear-margins"><!-- widgets -->
-                        
-                        	<li class="widget-container widget_nav_menu"><!-- widget -->
-                    
-                                <h1 class="title-widget">Noticias mas Descatacas</h1>
-                                
-                                <ul>
-                                	<li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
-                                    <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
-                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
-                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
-                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
-                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
-                                    
-                                </ul>
-                    
-							</li>
-                            <br>
-                        	<li class="widget-container widget_up_events"><!-- widget -->
-                    
-                                <h1 class="title-widget">Próximos Eventos</h1>
-                                
-                                <ul class="list-unstyled">
-                                {% for evento in  agenda %}
-                                	
-                                
-                                    <li class="up-event-wrap">
-                                
-                                        <h1 class="title-median"><a href="#" title="Annual alumni game">{{evento.evento}}</a></h1>
-                                        
-                                        <div class="up-event-meta clearfix">
-                                            <div class="up-event-date">Julio 25, 2015</div><div class="up-event-time">9:00 am - 11:00 am</div>
-                                        </div>
-                                        
-                                        <p>
-                                        Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a> 
-                                        </p>
-                                    
-                                    </li>
-                                {% endfor %}    
-                                    
-                                
-                                </ul>
-                            
-                            </li>
-                            
-                        </ul><!-- widgets end -->
+						{% include "widgets.html" %}
                     
                     </div><!-- inner custom column end -->
                     

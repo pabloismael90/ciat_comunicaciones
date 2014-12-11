@@ -1,0 +1,53 @@
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                            <li class="widget-container widget_nav_menu"><!-- widget -->
+                    
+                                <h1 class="title-widget">Noticias mas Descatacas</h1>
+                                
+                                <ul>
+                                    <li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    
+                                </ul>
+                    
+                            </li>
+                            <br>
+                            <li class="widget-container widget_up_events"><!-- widget -->
+                    
+                                <h1 class="title-widget">Próximos Eventos</h1>
+                                
+                                <ul class="list-unstyled">
+                                {% for evento in  agenda %}
+                                    
+                                
+                                    <li class="up-event-wrap">
+                                
+                                        <h1 class="title-median"><a href="#" title="Annual alumni game">{{evento.evento}}</a></h1>
+                                        
+                                        <div class="up-event-meta clearfix">
+                                            <div class="up-event-date">
+                                                Inicio: {{evento.inicio|date:"M t, Y"}}
+                                            </div>
+                                            <div class="up-event-date">
+                                                Final: {{evento.final|date:"M t, Y"}}
+                                            </div>
+                                        </div>
+                                        
+                                        <p>
+                                        {{evento.descripcion|safe|truncatewords_html:10}}
+                                        <a href="#" class="moretag" title="read more">Ver evento</a> 
+                                        </p>
+                                    
+                                    </li>
+                                {% endfor %}    
+                                    
+                                
+                                </ul>
+                            
+                            </li>
+                            
+                        </ul><!-- widgets end -->
