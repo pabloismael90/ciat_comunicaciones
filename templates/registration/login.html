@@ -1,4 +1,4 @@
-{% extends "baseinterna.html" %}
+{% extends "basexterno.html" %}
 {%block titulo%}Entrar a plataforma{%endblock%}
 {%block descriptitulo%}Favor introduzca su información de usuario registrado.{%endblock%}
 {% block contenido %}
@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="span4">
-			<form method="post" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
+			<form method="post" action="{% url 'django.contrib.auth.views.login' %}">{% csrf_token %}
 				{%if form.errors%}
 				<div class="alert">
 					{{form.non_field_errors}}
