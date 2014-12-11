@@ -709,13 +709,13 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 }
 
 .title-widget-org { 
-	color: #898989; 
+	
 	font-size: 13px; 
 	font-weight: 300; 
-	line-height: 1; 
+	line-height: 0; 
 	text-transform: uppercase; 
 	margin: 0 0 20px 0; 
-	position: relative; 
+
 }
 
 .title-widget-org:before { 
@@ -725,7 +725,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 	top: -2px; 
 	height: 18px; 
 	width: 5px; 
-	background-color: #5d8c3b; 
+	
 }
 .txt-black{
 	color: black;
@@ -761,4 +761,10 @@ color: #1d1d1d !important;
 }
 .btn-success {
 background-color: #5d8c3b;
+}
+.leyenda {
+  width: 10px;
+  height: 20px;
+  float: left;
+  margin-right: 20px;
 }

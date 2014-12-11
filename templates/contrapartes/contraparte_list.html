@@ -1,4 +1,4 @@
-{% extends "baseinterna.html" %}
+{% extends "basexterno.html" %}
 {% block extra_js %}
 <script type='text/javascript'>
     $(document).ready(function() {
@@ -8,8 +8,149 @@
 </script>
 {%endblock%}
 {%block titulo%}Asociados en Nicaragua{%endblock%}
-{%block descriptitulo%}Somos un grupos de radios comunitarias, que junto a organizaciones aliadas promueven el desarrollo social, los derechos humanos, la diversidad cultural, la pluralidad de informaciones y opiniones, a fin de  fortalecimiento de los vínculos que hacen a la esencia de la identidad cultural y social.{%endblock%}
+
 {% block contenido %}
+<div id="k-body"><!-- content wrapper -->
+    
+        <div class="container"><!-- container -->
+        
+            <div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    <form action="#" id="top-searchform" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                        </div>
+                    </form>
+                    
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+                <div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                    <ol class="breadcrumb">
+                        <li><a href="/">inicio</a></li>
+                        <li class="active">Contrapartes</li>
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->               
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter"><!-- row -->
+                
+                <div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
+                    
+                    <div class="col-padded"><!-- inner custom column -->
+                    
+                            <div class="col-lg-12 col-md-12">
+                                <div class="btn-group paises ">
+                                  <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
+                                  <button type="button" class="btn btn-default">
+                                  Trifinio
+                                  </button>
+                                  <button type="button" class="btn btn-default">
+                                  Nicanorte
+                                  </button>
+                                  <button type="button" class="btn btn-default">
+                                  AH-RD
+                                  </button>
+                                </div>
+                                <hr />
+                            </div>
+                        
+                        <div class="row gutter k-equal-height"><!-- row -->
+
+                        {% for contraparte in object_list %}
+                            <div class="col-lg-6 col-md-6 contrapartes">
+                            {% if contraparte.logo %}
+                                <img class="center-block"src="{{contraparte.logo.url_180x160}}">
+                            {%else%}
+                                <img class="center-block"src="http://placehold.it/180x160&text=No Img">
+                            {%endif%}
+                                <h3>{{contraparte.nombre}}</h3>
+                                <p id="siglas">{{contraparte.siglas}}</p>
+                                <p id="descripcion">
+                                    {{contraparte.generalidades|safe|truncatewords_html:30}}
+                                </p>
+                            </div>
+                        {% endfor %}
+
+
+                        </div><!-- row end -->
+                        
+                        
+                        <div class="row gutter"><!-- row -->
+                        
+                            <div class="col-lg-12">
+                        
+                                <ul class="pagination pull-right"><!-- pagination -->
+                                    <li class="disabled"><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul><!-- pagination end -->
+                            
+                            </div>
+                            
+                        </div><!-- row end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- doc body wrapper end -->
+                
+                <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
+                    
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                        <ul class="list-unstyled clear-margins"><!-- widgets -->
+                        
+                            <li class="widget-container widget_nav_menu"><!-- widget -->
+                    
+                                <h1 class="title-widget">Noticias mas Descatacas</h1>
+                                
+                                <ul>
+                                    <li><a href="news.html" title="menu item">Fiestas Pratias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">El Salvador en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    <li><a href="news.html" title="menu item">Panama en Nicaragua</a></li>
+                                    <li><a href="news.html" title="menu item">Fiestas Patrias en Camoapa</a></li>
+                                    
+                                </ul>
+                    
+                            </li>
+                            <br>
+                            <li class="widget-container widget_up_events"><!-- widget -->
+                    
+                                <h1 class="title-widget">Próximos Eventos</h1>
+                                
+                                {% include "widgets.html" %}
+                            
+                            </li>
+                            
+                        </ul><!-- widgets end -->
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- sidebar wrapper end -->
+            
+            </div><!-- row end -->
+        
+        </div><!-- container end -->
+    
+    </div><!-- content wrapper end -->
+    
+
+
+
+
+
 <div class="row">
     <div class="encabezado">
       <div class="container">
@@ -45,19 +186,7 @@
                     </div>
             {% endfor %}
             </div>
-            <div class='span3 sidebar-radios'>
-                <center>
-                <div class="btn-group">
-                  <a href="/contrapartes/mapa" class="btn btn-large">Mapa</a>
-                  <a href="/contrapartes/" class="btn btn-large active">Lista</a>
-                </div>
-                </center>
-                <br>
-                <center>
-                <img src="/files/img/amarc_sidebar.png"><br><br>
-                </center>
-                <p>Lista que demuestra la distribucion de las radios comunitarias pertenecientes a AMARC Nicaragua en la actualidad</p>
-            </div>
+
         </div>
     </div>
 </div>

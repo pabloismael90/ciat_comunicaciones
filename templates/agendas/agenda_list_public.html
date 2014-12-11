@@ -1,4 +1,4 @@
-{% extends "baseinterna.html" %}ß
+{% extends "basexterno.html" %}ß
 {% block extra_js %}
 <link href="/files/css/fullcalendar.css" rel="stylesheet" type="text/css">
 <link href="/files/css/cupertino/theme.css" rel="stylesheet" type="text/css">
@@ -59,67 +59,115 @@
 	  </div>
 	</div>
 </div>
-<div class="row body-content">
-	<div class="container">
-		{%if actividad %}
-		<div class="row">
-			<div {%if actividad.adjunto.all %}class="span8"{%else%} class="span12"{%endif%}>
-				<div class="evento">
-					<div class="fechas">
-						<span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.inicio|date:"d M"}}</span>
-						{%if actividad.final%}
-							→ <span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.final|date:"d M"}}</span>
-						{%endif%}
-					</div>
-					<div class="titulo-medio">{{actividad.evento}}</div>
-					{{actividad.descripcion|safe}}
-				</div>
-			</div>
-			{%if actividad.adjunto.all %}
-			<div class="span4">				
-				<div class="sidebar-title">Documentos</div>
-                <table class="table  table-bordered table-condensed doc-sidebar">
-                  <tbody>
-                    {% for doc in actividad.adjunto.all%}
-                    <tr>
-                        <td>{{doc.nombre_doc}}</td>
-                        <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-			</div>
-			{%endif%}
-		</div>
-		<hr>
-		{%endif%}
-		<div class="row">
-			<div class="span9">
-				<div id='calendar'></div><Br>
-			</div>
-			<div class="span3"><br><br>
-				<ul class="nav nav-list well">
+
+    <div id="k-body"><!-- content wrapper -->
+
+
+    	<div class="container"><!-- container -->
+        
+        	<div class="row"><!-- row -->
+            
+                <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+                
+                    <form action="#" id="top-searchform" method="get" role="search">
+                        <div class="input-group">
+                            <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                        </div>
+                    </form>
+                    
+                    <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+                
+                </div><!-- top search end -->
+            
+            	<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+                
+                	<ol class="breadcrumb">
+                    	<li><a href="/">Inicio</a></li>
+                        <li class="active">Calendario de Eventos</li>
+                        
+                    </ol>
+                    
+                </div><!-- breadcrumbs end -->               
+                
+            </div><!-- row end -->
+            
+            <div class="row no-gutter col-lg-8 col-md-8"><!-- row -->
+                
+                <div class=""><!-- doc body wrapper -->
+
+
+                	
+                    <div class="col-padded"><!-- inner custom column -->
+                            <div class="col-lg-12 col-md-12">
+                                <div class="btn-group paises ">
+                                  <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
+                                  <button type="button" class="btn btn-default">
+                                  Trifinio
+                                  </button>
+                                  <button type="button" class="btn btn-default">
+                                  Nicanorte
+                                  </button>
+                                  <button type="button" class="btn btn-default">
+                                  AH-RD
+                                  </button>
+                                </div>
+                                <hr />
+                            </div>
+                    
+
+
+
+                    	<div class="row gutter"><!-- row -->
+                        
+                        	<div class="col-lg-12 col-md-12">
+
+                                <div id='calendar'></div>
+                                    
+                            </div>
+                            
+                            </div>
+                        
+                        </div><!-- row end -->               
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- doc body wrapper end -->
+                
+                <div id="k-sidebar" class="col-lg-4 col-md-4"><!-- sidebar wrapper -->
+
+                    <div class="col-padded col-shaded"><!-- inner custom column -->
+                    
+                    <h1 class="title-widget">Organizaciones</h1>
+
+                    <ul class="nav nav-list">
 
 						 {% for pais in paises %}
-						<li class="nav-header">
-					    {{pais}}
-					  </li>
+							<li class="nav-header" style="margin-bottom:5px">
+					    	{{pais}}
+					  		</li>
 
 						 	{% for contraparte in contrapartes %}
 						 		{% if contraparte.pais.id == pais.id%}
-						 		<div class="leyenda"style ="margin-right:5px;background:{{contraparte.font_color}}"></div>
-						 		<li>
+
+						 		<div class="leyenda" style ="margin-right:5px;background:{{contraparte.font_color}}">
+						 			
+						 		</div>
+
+						 		<li class="title-widget-org">
 									<a href="/contrapartes/{{contraparte.id}}">{{contraparte.siglas}}</a>
 								</li>
 								<div class="clean" style="margin-bottom:5px"></div>
 						 		{%endif%}
 						 	{% endfor %}
-						 {% endfor %}
-						</form>
-				</ul>
-
-			</div>
-		</div>
-	</div>
-</div>
+						{% endfor %}
+						
+					</ul>
+                    
+                    </div><!-- inner custom column end -->
+                    
+                </div><!-- sidebar wrapper end -->
+            
+            </div><!-- row end -->
+         
+        </div><!-- container end -->
 {% endblock %}

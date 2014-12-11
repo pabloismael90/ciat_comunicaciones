@@ -33,6 +33,7 @@ def lista_contrapartes_mapa(request):
 
 def lista_contrapartes(request):
     object_list = Contraparte.objects.filter(tipo=1).order_by('nombre')
+    agenda = Agendas.objects.all().order_by('-inicio','-id')[1:4]
     return render_to_response('contrapartes/contraparte_list.html', locals(),
                                  context_instance=RequestContext(request))
 
