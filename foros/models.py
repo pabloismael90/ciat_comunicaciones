@@ -8,11 +8,11 @@ from tagging.models import Tag
 from tagging_autocomplete.models import TagAutocompleteField
 from django.contrib.auth.models import User
 #from contrapartes.models import Usuarios
-from thumbs import ImageWithThumbsField
 from utils import *
 import datetime
 from south.modelsinspector import add_introspection_rules
 from ckeditor.fields import RichTextField
+from sorl.thumbnail import ImageField
 
 add_introspection_rules ([], ["^ckeditor\.fields\.RichTextField"])
 add_introspection_rules ([], ["^tagging_autocomplete\.models\.TagAutocompleteField"])
@@ -26,8 +26,7 @@ class Imagen(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     nombre_img = models.CharField("Nombre",max_length=200, null=True, blank=True)
-    foto = ImageWithThumbsField("Foto",upload_to=get_file_path,
-                                   sizes=((220,160), (80,80),(380,250),(640,480)), 
+    foto = ImageField("Foto",upload_to=get_file_path, 
                                    null=True, blank=True)
     tags_img = TagAutocompleteField("Tags",help_text='Separar elementos con "," ', null=True, blank=True)
     fileDir = 'fotos/'

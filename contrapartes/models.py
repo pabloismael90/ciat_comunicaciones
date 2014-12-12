@@ -8,6 +8,7 @@ from south.modelsinspector import add_introspection_rules
 from ckeditor.fields import RichTextField
 import datetime
 from lugar.models import *
+from sorl.thumbnail import ImageField
 
 add_introspection_rules ([], ["^ckeditor\.fields\.RichTextField"])
 
@@ -46,9 +47,7 @@ class Contraparte(models.Model):
     nombre = models.CharField(max_length=200)
     siglas = models.CharField("Siglas o nombre corto",help_text="Siglas o nombre corto de la oganización",max_length=200,blank=True, null=True)
     frecuecia = models.CharField('Frecuencia',max_length=50, null=True, blank=True)
-    logo = ImageWithThumbsField(upload_to=get_file_path,
-                                   sizes=((350,250), (70,60),(180,160)), 
-                                   null=True, blank=True)
+    logo = ImageField(upload_to=get_file_path,null=True, blank=True)
     fileDir = 'contrapartes/logos/'
     pais = models.ForeignKey(Pais)
     municipio = models.ForeignKey(Municipio)

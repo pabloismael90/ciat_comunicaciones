@@ -139,16 +139,18 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'agendas',
     'contrapartes',
-    'magicembed',
     'foros',
     'notas',
-    'south',
+    'lugar',
+    #terceras aplicaciones
+    'magicembed',
     'tagging',
     'tagging_autocomplete',
     'ckeditor',
     'compressor',
     'django_google_cse',
-    'lugar',
+    'south',
+    'sorl.thumbnail'
 
 )
 

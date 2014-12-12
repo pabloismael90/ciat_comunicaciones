@@ -1,4 +1,7 @@
 {% extends "basexterno.html" %}
+
+{% load thumbnail %}
+
 {% block extra_js %}
 
 {% endblock %}
@@ -45,15 +48,11 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="btn-group paises ">
                               <button type="button" class="btn txt-black" disabled="disabled">Filtar por:</button>
-                              <button type="button" class="btn btn-default">
-                              Trifinio
-                              </button>
-                              <button type="button" class="btn btn-default">
-                              Nicanorte
-                              </button>
-                              <button type="button" class="btn btn-default">
-                              AH-RD
-                              </button>
+                              {% for obj in paises %}
+                                <button type="button" class="btn btn-default">
+                                    <a href="/notas/pais/{{obj.id}}">{{obj.nombre}}</a>
+                                </button>
+                              {% endfor %}
                             </div>
                             <hr />
                         </div>
@@ -76,7 +75,15 @@
                             <div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
                             
                                 <figure class="news-featured-image">	
-                                    <img src="/files/temporal/img/news-1.jpg" alt="Featured image 1" class="img-responsive" />
+                                    {%if nota.fotos.all.count > 0%}
+                                 {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        {% thumbnail thumb.foto "335x200" crop="center" as im %}
+                                            <a href="/notas/{{nota.id}}"><img src="/uploads/{{im}}" class="img-responsive" ></a>
+                                      {% endthumbnail %}
+                                 {%endfor%}
+                                {%else%}
+                                       <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png" class="img-responsive"><a/>
+                                {%endif%}
                                 </figure>
                                 
                                 <div class="page-title-meta">

@@ -1,11 +1,9 @@
+{% extends "basexterno.html" %}
 
-  {% extends "basexterno.html" %}
-  {% load magicembed_tags %}
-{% block extra_js%}
+{% load magicembed_tags %}
+{% load thumbnail %}
 
-
-{%endblock%}
-
+{% block extra_js%}{%endblock%}
 
 {% block contenido %}
 
@@ -49,10 +47,16 @@
                      
                           <div class="col-lg-12 col-md-12">
 
-                            
-
-                                <figure class="news-featured-image">  
-                                    <img src="/files/temporal/img/news-4.jpg" alt="Featured image 4" class="img-responsive" />
+                                <figure class="news-featured-image">
+                                {%if nota.fotos.all.count > 0%}
+                                 {%for thumb in nota.fotos.all|slice:"1"%} 
+                                        {% thumbnail thumb.foto "700x350" crop="center" as im %}
+                                            <a href="/notas/{{nota.id}}"><img src="/uploads/{{im}}" class="img-responsive" ></a>
+                                      {% endthumbnail %}
+                                 {%endfor%}
+                                {%else%}
+                                       <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png" class="img-responsive"><a/>
+                                {%endif%}  
                                 </figure>
                                 
                                 <div class="news-title-meta">

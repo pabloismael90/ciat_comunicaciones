@@ -1,0 +1,19 @@
+<ul class="pagination">
+{% if page_obj.has_previous %}
+  <li class="arrow unavailable"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+{% endif %}
+{% for page in page_numbers %}
+  {% if page %}
+    {% ifequal page page_obj.number %}
+      <li class="current">{{ page }}</li>
+    {% else %}
+      <li><a href="?page={{ page }}">{{ page }}</a></li>
+    {% endifequal %}
+  {% else %}
+    <li>...</li> 
+  {% endif %}
+{% endfor %}
+{% if page_obj.has_next %}
+  <li class="arrow"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+{% endif %}
+</ul>

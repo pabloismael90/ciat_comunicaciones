@@ -54,14 +54,19 @@
                             <a href="/agendas/eventos" title="Proximos Eventos">Eventos</a>
                         </li>
                         <li>
-                            <a href="/contrapartes" title="Organizaciones Alidas">Contrapartes</a>
+                            <a href="/contrapartes" title="Organizaciones Aliadas">Contrapartes</a>
                         </li>
 
                         <li>
-                            <a href="about-us.html" title="Mision y Vision">Acerca de</a>
+                            <a href="/acerca/" title="Mision y Vision">Acerca de</a>
                         </li>
                         <li>
-                            <a href="/accounts/login" class="" title="Entra">Inicio de Sesion</a>
+                            {% if request.user.is_authenticated %}
+                                <a href="/foros/perfil/" title="Administración">Bienvenido {{request.user}}</a>
+                            {%else%}
+                                <a href="/accounts/login" class="" title="Entra">Inicio de Sesion</a>
+                            {% endif %}
+                            
                         </li>
                     </ul>
         
@@ -92,7 +97,7 @@
                         
                         	<li class="widget-container widget_nav_menu"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Useful links</h1>
+                                <h1 class="title-widget">Links de interes</h1>
                                 
                                 <ul>
                                 	<li><a href="#" title="menu item">Placement Exam Schedule</a></li>
@@ -118,7 +123,7 @@
                         
                         	<li class="widget-container widget_recent_news"><!-- widgets list -->
                     
-                                <h1 class="title-widget">School Contact</h1>
+                                <h1 class="title-widget">Contactenos</h1>
                                 
                                 <div itemscope itemtype="http://data-vocabulary.org/Organization"> 
                                 
@@ -165,7 +170,7 @@
                         
                         	<li class="widget-container widget_sofa_flickr"><!-- widgets list -->
                     
-                                <h1 class="title-widget">Flickr Stream</h1>
+                                <h1 class="title-widget">Imagenes</h1>
                                 
                                 <ul class="k-flickr-photos list-unstyled">
                                 	<li><a href="#" title="Flickr photo"><img src="/files/temporal/img/flickr-1.jpg" alt="Photo 1" /></a></li>

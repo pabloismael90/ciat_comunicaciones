@@ -1,5 +1,8 @@
 {% extends "baseadmin.html" %}
-  {% load magicembed_tags %}
+
+{% load magicembed_tags %}
+{% load thumbnail %}
+
 {% block extra_js%}
 <script type="text/javascript" src="/files/js/jquery.bxSlider.min.js"></script>
 <script type="text/javascript">
@@ -104,7 +107,9 @@ $(".alert").alert();
                     {% for imagen in nota.fotos.all%}
                     <div>
                       <a class="fancybox" rel="galleryforo" title="{{imagen.nombre_img}}" href="{{imagen.foto.url_640x480}}">
-                        <img class="imagen-slider" src="{{imagen.foto.url_380x250}}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}">
+                      {% thumbnail imagen.foto "380x250" crop="center" as im %}
+                        <img class="imagen-slider" src="/uploads/{{ im }}" alt="{{imagen.nombre}}" title="{{imagen.nombre}}">
+                      {% endthumbnail %}
                       </a>
                         <span class="label label-success">{{imagen.nombre_img}}</span>
                     </div>
@@ -113,8 +118,10 @@ $(".alert").alert();
                 {%if nota.fotos.all.count > 1%}
                 <div class="thumbs">
                   {% for imagen in nota.fotos.all%}
-                        <a href="#"><img width="65" height="65" src="{{imagen.foto.url_80x80}}" alt="{{imagen.nombre_img}}" title="{{imagen.nombre_img}}"></a>
-                    {% endfor %}
+                      {% thumbnail imagen.foto "65x65" crop="center" as im %}
+                        <a href="#"><img src="/uploads/{{im}}" alt="{{imagen.nombre_img}}" title="{{imagen.nombre_img}}"></a>
+                      {% endthumbnail %}
+                  {% endfor %}
                     <div class="clean"></div>
                 </div>
                 {%endif%}

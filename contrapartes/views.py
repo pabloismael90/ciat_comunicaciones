@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
-from models import *
+from .models import *
 from forms import *
 from notas.models import *
 from agendas.models import *
@@ -32,8 +32,16 @@ def lista_contrapartes_mapa(request):
                                  context_instance=RequestContext(request))
 
 def lista_contrapartes(request):
-    object_list = Contraparte.objects.filter(tipo=1).order_by('nombre')
+    object_list = Contraparte.objects.all().order_by('nombre')
     agenda = Agendas.objects.all().order_by('-inicio','-id')[1:4]
+    paises = Pais.objects.all()
+    return render_to_response('contrapartes/contraparte_list.html', locals(),
+                                 context_instance=RequestContext(request))
+
+def lista_contrapartes_pais(request,id):
+    object_list = Contraparte.objects.filter(pais__id=id).order_by('nombre')
+    agenda = Agendas.objects.all().order_by('-inicio','-id')[1:4]
+    paises = Pais.objects.all()
     return render_to_response('contrapartes/contraparte_list.html', locals(),
                                  context_instance=RequestContext(request))
 

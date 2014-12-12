@@ -18,6 +18,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib.sites.models import Site
 from django.views.generic import TemplateView
+from foros.models import Documentos, Videos
 
 # Create your views here.
 
@@ -92,13 +93,13 @@ def lista_notas_pais(request,id):
 
 
 def index(request):
-    notasslide = Notas.objects.all().order_by('-fecha','-id')[1:4]
-    notascol1 = Notas.objects.all().order_by('-fecha','-id')[4:7]
-    notascol2 = Notas.objects.all().order_by('-fecha','-id')[7:10]
+    notasslide = Notas.objects.all().order_by('-fecha','-id')
     evento = Agendas.objects.filter(publico=True).order_by('-inicio')[:3]
     paises = Pais.objects.all()
     contrapartes = Contraparte.objects.filter(tipo=1)
-    audio = Audios.objects.all()[:4]
+    audio = Audios.objects.order_by('-id')[:1]
+    documentos = Documentos.objects.order_by('-id')[:2]
+    video = Videos.objects.order_by('-id')[:1]
 
     return render_to_response('index.html', locals(),
                               context_instance=RequestContext(request))

@@ -1,4 +1,7 @@
 {% extends "baseadmin.html" %}
+
+{% load thumbnail %}
+
 {% block extra_js %}
     <script type="text/javascript">
         $(document).ready(function(){
@@ -38,7 +41,9 @@
 				<div class="span3">
 				{%if nota.fotos.all.count > 0%}
 				 {%for thumb in nota.fotos.all|slice:"1"%} 
-	                   <a href="/notas/{{nota.id}}"><img  src="{{thumb.foto.url_220x160}}"><a/>
+				 		{% thumbnail thumb.foto "220x160" crop="center" as im %}
+                        	<a href="/notas/{{nota.id}}"><img src="/uploads/{{im}}"></a>
+                      {% endthumbnail %}
 	             {%endfor%}
 	            {%else%}
 	           		   <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png"><a/>
@@ -57,18 +62,18 @@
 	    	<ul>
 	        {% if notas.has_previous %}
 	        <li>
-	          <a href="{% url notas-personales %}?page={{ notas.previous_page_number }}">
+	          <a href="{% url 'notas-personales' %}?page={{ notas.previous_page_number }}">
 	            ← Anterior</a>
 	        </li>
 	        {% endif %}
 	        <li class="active">
 	            {% for numero in notas.paginator.page_range%}
-	            	<a href="{% url notas-personales %}?page={{numero}}">{{numero}}</a>
+	            	<a href="{% url 'notas-personales' %}?page={{numero}}">{{numero}}</a>
 	            {%endfor%}
 	        </li>
 	        {% if notas.has_next %}
 	         <li>
-	         <a href="{% url notas-personales %}?page={{ notas.next_page_number }}">
+	         <a href="{% url 'notas-personales' %}?page={{ notas.next_page_number }}">
 	                Siguiente →</a>
 	         </li>
 	         {% endif %}

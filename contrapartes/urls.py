@@ -4,6 +4,7 @@ from models import Contraparte
 
 urlpatterns = patterns('contrapartes.views',
     url(r'^$', 'lista_contrapartes', name="contraparte-list"),
+    url(r'^pais/(?P<id>\d+)/$', 'lista_contrapartes_pais', name="contraparte_list_pais"),
     url(r'^mapa/$', 'lista_contrapartes_mapa', name="contraparte-list-mapa"),
     url(r'^(?P<id>\d+)/$', 'detalle_contraparte', name="detalle-contraparte"),
     # url(r'^(?P<pk>\d+)/$', DetailView.as_view(model=Contraparte, 
