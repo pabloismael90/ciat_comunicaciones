@@ -3,7 +3,11 @@
 {% load magicembed_tags %}
 {% load thumbnail %}
 
-{% block extra_js%}{%endblock%}
+{% block extra_js%}
+
+
+
+{%endblock%}
 
 {% block contenido %}
 
@@ -55,10 +59,24 @@
                                       {% endthumbnail %}
                                  {%endfor%}
                                 {%else%}
-                                       <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png" class="img-responsive"><a/>
+                                <a href="/notas/{{nota.id}}"><img  src="/files/img/nofoto.png" class="img-responsive"></a>
                                 {%endif%}  
                                 </figure>
                                 
+                               <div class="slider_nota_detail">
+                                    <ul class="slidernota">
+                                        <li><img src="/files/temporal/img/news-1.jpg" /></li>
+                                        <li><img src="/files/temporal/img/news-2.jpg" /></li>
+                                        <li><img src="/files/temporal/img/news-3.jpg" /></li>
+                                    </ul>
+
+                                    <div id="bx-pager">
+                                        <a data-slide-index="0" href=""><img src="/files/temporal/img/flickr-6.jpg" /></a>
+                                        <a data-slide-index="1" href=""><img src="/files/temporal/img/flickr-1.jpg" /></a>
+                                        <a data-slide-index="2" href=""><img src="/files/temporal/img/flickr-3.jpg" /></a>
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="news-title-meta">
                                     <h1 class="page-title">{{nota.titulo}}</h1>
                                     <div class="news-meta">
@@ -136,7 +154,7 @@
                                     
                                                     <div class="comment-meta commentmetadata"><!-- comment meta-->
                                                         <time datetime="">{{comentario.fecha|date:"M t, Y"}}</time>
-                                                        <a href="#" class="comment-reply-link"><i class="fa fa-reply"></i> &nbsp; Responder</a>                   
+                                                                          
                                                     </div><!-- comment meta end -->
                                                     
                                                     <div class="comment-body"><!-- comment text -->

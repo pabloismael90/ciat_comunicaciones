@@ -61,6 +61,38 @@
 </div>
 
     <div id="k-body"><!-- content wrapper -->
+    {%if actividad %}
+		<div class="row">
+			<div {%if actividad.adjunto.all %}class="span8"{%else%} class="span12"{%endif%}>
+				<div class="evento">
+					<div class="fechas">
+						<span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.inicio|date:"d M"}}</span>
+						{%if actividad.final%}
+							→ <span class="badge badge-warning"><i class="icon-calendar icon-white"></i>{{actividad.final|date:"d M"}}</span>
+						{%endif%}
+					</div>
+					<div class="titulo-medio">{{actividad.evento}}</div>
+					{{actividad.descripcion|safe}}
+				</div>
+			</div>
+			{%if actividad.adjunto.all %}
+			<div class="span4">				
+				<div class="sidebar-title">Documentos</div>
+                <table class="table  table-bordered table-condensed doc-sidebar">
+                  <tbody>
+                    {% for doc in actividad.adjunto.all%}
+                    <tr>
+                        <td>{{doc.nombre_doc}}</td>
+                        <td><center><a href="/uploads/{{doc.adjunto}}" class=" btn btn-info btn-mini dropdown-toggle"><i class="icon-download-alt icon-white"></i>Descargar</a></center></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+			</div>
+			%endif%
+		</div>
+		<hr>
+		{%endif%}
 
 
     	<div class="container"><!-- container -->

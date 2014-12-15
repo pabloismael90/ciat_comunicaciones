@@ -768,3 +768,6 @@ background-color: #5d8c3b;
   float: left;
   margin-right: 20px;
 }
+.slider_nota_detail .bx-wrapper{
+	margin: 0 auto 15px;
+}
